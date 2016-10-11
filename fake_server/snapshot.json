@@ -1,0 +1,251 @@
+{
+  "localTime": "2016-10-11T13:29:41.287966411-03:00",
+  "timestamp": 1476203381,
+  "metrics": {
+    "cpuTimes": [
+      {
+        "cpu": "cpu-total",
+        "user": 11784.93,
+        "system": 2299.07,
+        "idle": 3.09669401e+06,
+        "nice": 194.26,
+        "iowait": 767.98,
+        "irq": 0,
+        "softirq": 170.27,
+        "steal": 0,
+        "guest": 0,
+        "guestNice": 0,
+        "stolen": 0
+      }
+    ],
+    "daysUptime": 4,
+    "diskIO": {
+      "sda": {
+        "readCount": 102812,
+        "mergedReadCount": 1894,
+        "writeCount": 318760,
+        "mergedWriteCount": 352416,
+        "readBytes": 2118906880,
+        "writeBytes": 12058959872,
+        "readTime": 872088,
+        "writeTime": 3201720,
+        "iopsInProgress": 0,
+        "ioTime": 651256,
+        "name": "sda",
+        "serialNumber": "VBOX_HARDDISK_VBffc0222c-c39392af"
+      },
+      "sda1": {
+        "readCount": 102124,
+        "mergedReadCount": 1894,
+        "writeCount": 288989,
+        "mergedWriteCount": 352416,
+        "readBytes": 2098795520,
+        "writeBytes": 12058959872,
+        "readTime": 871048,
+        "writeTime": 3175728,
+        "iopsInProgress": 0,
+        "ioTime": 625896,
+        "name": "sda1",
+        "serialNumber": "VBOX_HARDDISK_VBffc0222c-c39392af"
+      },
+      "sda2": {
+        "readCount": 4,
+        "mergedReadCount": 0,
+        "writeCount": 0,
+        "mergedWriteCount": 0,
+        "readBytes": 4096,
+        "writeBytes": 0,
+        "readTime": 28,
+        "writeTime": 0,
+        "iopsInProgress": 0,
+        "ioTime": 28,
+        "name": "sda2",
+        "serialNumber": "VBOX_HARDDISK_VBffc0222c-c39392af"
+      },
+      "sda5": {
+        "readCount": 95,
+        "mergedReadCount": 0,
+        "writeCount": 0,
+        "mergedWriteCount": 0,
+        "readBytes": 4366336,
+        "writeBytes": 0,
+        "readTime": 336,
+        "writeTime": 0,
+        "iopsInProgress": 0,
+        "ioTime": 324,
+        "name": "sda5",
+        "serialNumber": "VBOX_HARDDISK_VBffc0222c-c39392af"
+      }
+    },
+    "load": {
+      "load1": 0.16,
+      "load5": 0.12,
+      "load15": 0.04
+    },
+    "netIO": [
+      {
+        "name": "enp0s3",
+        "bytesSent": 973088600,
+        "bytesRecv": 486731108,
+        "packetsSent": 943202,
+        "packetsRecv": 1134296,
+        "errin": 0,
+        "errout": 0,
+        "dropin": 0,
+        "dropout": 0,
+        "fifoin": 0,
+        "fifoout": 0
+      },
+      {
+        "name": "lo",
+        "bytesSent": 67479012,
+        "bytesRecv": 67479012,
+        "packetsSent": 124409,
+        "packetsRecv": 124409,
+        "errin": 0,
+        "errout": 0,
+        "dropin": 0,
+        "dropout": 0,
+        "fifoin": 0,
+        "fifoout": 0
+      }
+    ],
+    "netProto": [
+      {
+        "protocol": "ip",
+        "stats": {
+          "DefaultTTL": 64,
+          "ForwDatagrams": 0,
+          "Forwarding": 2,
+          "FragCreates": 0,
+          "FragFails": 0,
+          "FragOKs": 0,
+          "InAddrErrors": 4,
+          "InDelivers": 1152844,
+          "InDiscards": 0,
+          "InHdrErrors": 0,
+          "InReceives": 1153343,
+          "InUnknownProtos": 0,
+          "OutDiscards": 4,
+          "OutNoRoutes": 4,
+          "OutRequests": 718342,
+          "ReasmFails": 0,
+          "ReasmOKs": 0,
+          "ReasmReqds": 0,
+          "ReasmTimeout": 0
+        }
+      },
+      {
+        "protocol": "icmp",
+        "stats": {
+          "InAddrMaskReps": 0,
+          "InAddrMasks": 0,
+          "InCsumErrors": 0,
+          "InDestUnreachs": 22,
+          "InEchoReps": 360,
+          "InEchos": 0,
+          "InErrors": 0,
+          "InMsgs": 382,
+          "InParmProbs": 0,
+          "InRedirects": 0,
+          "InSrcQuenchs": 0,
+          "InTimeExcds": 0,
+          "InTimestampReps": 0,
+          "InTimestamps": 0,
+          "OutAddrMaskReps": 0,
+          "OutAddrMasks": 0,
+          "OutDestUnreachs": 21804,
+          "OutEchoReps": 0,
+          "OutEchos": 451,
+          "OutErrors": 0,
+          "OutMsgs": 22255,
+          "OutParmProbs": 0,
+          "OutRedirects": 0,
+          "OutSrcQuenchs": 0,
+          "OutTimeExcds": 0,
+          "OutTimestampReps": 0,
+          "OutTimestamps": 0
+        }
+      },
+      {
+        "protocol": "icmpmsg",
+        "stats": {
+          "InType0": 360,
+          "InType3": 22,
+          "OutType3": 21804,
+          "OutType8": 451
+        }
+      },
+      {
+        "protocol": "tcp",
+        "stats": {
+          "ActiveOpens": 9161,
+          "AttemptFails": 594,
+          "CurrEstab": 6,
+          "EstabResets": 339,
+          "InCsumErrors": 0,
+          "InErrs": 0,
+          "InSegs": 963354,
+          "MaxConn": -1,
+          "OutRsts": 2126,
+          "OutSegs": 830604,
+          "PassiveOpens": 1972,
+          "RetransSegs": 376,
+          "RtoAlgorithm": 1,
+          "RtoMax": 120000,
+          "RtoMin": 200
+        }
+      },
+      {
+        "protocol": "udp",
+        "stats": {
+          "IgnoredMulti": 0,
+          "InCsumErrors": 0,
+          "InDatagrams": 165205,
+          "InErrors": 0,
+          "NoPorts": 21814,
+          "OutDatagrams": 213821,
+          "RcvbufErrors": 0,
+          "SndbufErrors": 0
+        }
+      },
+      {
+        "protocol": "udplite",
+        "stats": {
+          "IgnoredMulti": 0,
+          "InCsumErrors": 0,
+          "InDatagrams": 0,
+          "InErrors": 0,
+          "NoPorts": 0,
+          "OutDatagrams": 0,
+          "RcvbufErrors": 0,
+          "SndbufErrors": 0
+        }
+      }
+    ],
+    "swapMemory": {
+      "total": 16775114752,
+      "used": 0,
+      "free": 16775114752,
+      "usedPercent": 0,
+      "sin": 0,
+      "sout": 0
+    },
+    "temperature": "-",
+    "virtualMemory": {
+      "total": 16430116864,
+      "available": 13039505408,
+      "used": 3390611456,
+      "usedPercent": 20.636563233638118,
+      "free": 9320841216,
+      "active": 5192581120,
+      "inactive": 1340059648,
+      "wired": 0,
+      "buffers": 393474048,
+      "cached": 3403317248,
+      "writeback": 0,
+      "dirty": 61440,
+      "writebacktmp": 0
+    }
+  }
+}
