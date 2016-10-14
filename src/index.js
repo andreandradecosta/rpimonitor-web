@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App2';
+import App from './App';
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/css/bootstrap-theme.css';
-import 'sb-admin-2/dist/css/sb-admin-2.css'
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+    <App />,
+    document.getElementById('root')
 );

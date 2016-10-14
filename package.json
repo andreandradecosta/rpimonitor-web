@@ -11,18 +11,17 @@
   },
   "dependencies": {
     "axios": "^0.14.0",
-    "bootstrap": "^3.3.7",
+    "material-ui": "^0.16.0",
     "react": "^15.3.2",
-    "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
-    "sb-admin-2": "^3.3.8"
+    "react-tap-event-plugin": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "json-server": "json-server --port 3001 --routes fake_server/routes.json fake_server/db.js",
+    "json-server": "json-server --delay 500 --port 3001 --routes fake_server/routes.json fake_server/db.js",
     "start-all": "nf start"
   },
   "eslintConfig": {
