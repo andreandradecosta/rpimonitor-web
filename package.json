@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "coveralls": "^2.11.14",
     "enzyme": "^2.4.1",
     "foreman": "^2.0.0",
     "json-server": "^0.8.22",
