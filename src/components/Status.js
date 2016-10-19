@@ -4,6 +4,9 @@ import LinearProgress from 'material-ui/LinearProgress';
 import { List, ListItem } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import moment from 'moment';
+import StorageIcon from 'material-ui/svg-icons/device/storage';
+import UserIcon from 'material-ui/svg-icons/action/account-box'
+import CPUIcon from 'material-ui/svg-icons/hardware/developer-board';
 
 function StatusDetails(status) {
     return (
@@ -18,11 +21,13 @@ function StatusDetails(status) {
                         disableKeyboardFocus={true}
                         disabled={true}
                         primaryText="Disk"
-                        secondaryText={`${status.metrics.diskUsage.usedPercent.toFixed(2)} %`} />
+                        secondaryText={`${status.metrics.diskUsage.usedPercent.toFixed(2)} %`}
+                        leftIcon={<StorageIcon />} />
                     <ListItem
                         primaryText="CPU"
                         primaryTogglesNestedList={true}
                         secondaryText={`# ${status.metrics.cpuInfo.length}`}
+                        leftIcon={<CPUIcon />}
                         nestedItems={
                             status.metrics.cpuInfo.map((cpu, i) =>
                                 <ListItem
@@ -36,6 +41,7 @@ function StatusDetails(status) {
                         primaryText="Users"
                         primaryTogglesNestedList={true}
                         secondaryText={`# ${status.metrics.users.length}`}
+                        leftIcon={<UserIcon />}
                         nestedItems={
                             status.metrics.users.map((u, i) =>
                                     <ListItem
