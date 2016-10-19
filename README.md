@@ -1,4 +1,4 @@
-# rpimonitor-web
+rpimonitor-web
 ===
 
 [![Build][Build-Image]][Build-URL] [![Coverage Status][Coverage-Image]][Coverage-URL]
