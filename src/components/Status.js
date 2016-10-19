@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Card, CardHeader } from 'material-ui/Card';
 import LinearProgress from 'material-ui/LinearProgress';
 import { List, ListItem } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 import moment from 'moment';
 
 function StatusDetails(status) {
@@ -11,6 +12,7 @@ function StatusDetails(status) {
                     title={status.metrics.host.hostname}
                     subtitle={`${status.metrics.host.os}/${status.metrics.host.platform}
                         (${status.metrics.host.kernelVersion})`} />
+                <Divider />
                 <List>
                     <ListItem
                         disableKeyboardFocus={true}
