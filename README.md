@@ -1,6 +1,7 @@
 # rpimonitor-web
----
-[![Build][Build-Image]][Build-URL][![Coverage Status][Coverage-Image]][Coverage-URL]
+===
+
+[![Build][Build-Image]][Build-URL] [![Coverage Status][Coverage-Image]][Coverage-URL]
 
 My Raspberry Pi Monitor - React Web Client for https://github.com/andreandradecosta/rpimonitor
 
