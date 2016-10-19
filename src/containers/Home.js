@@ -4,7 +4,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import HelloContainer from './HelloContainer';
+import StatusContainer from './StatusContainer';
 
 
 
@@ -34,7 +34,9 @@ class Home extends Component {
                 <AppBar
                     title="My Raspberry Pi Monitor"
                     iconElementRight={<Menu/>}/>
-                <HelloContainer/>
+                <div>
+                    <StatusContainer/>
+                </div>
             </div>
         )
     }
