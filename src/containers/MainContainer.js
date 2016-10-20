@@ -7,6 +7,8 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Drawer from 'material-ui/Drawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Link } from 'react-router';
+import { indigo500, indigo700} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 function Menu(props) {
     return (
@@ -25,6 +27,14 @@ function Menu(props) {
 }
 
 Menu.muiName = 'IconMenu';
+
+const muiTheme = getMuiTheme({
+    palette: {
+        primary1Color: indigo500,
+        primary2Color: indigo700,
+        pickerHeaderColor: indigo500
+    }
+})
 
 class Home extends Component {
     constructor() {
@@ -45,7 +55,7 @@ class Home extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <AppBar
                         title="My Raspberry Pi Monitor"
