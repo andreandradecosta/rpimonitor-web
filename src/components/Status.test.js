@@ -3,6 +3,7 @@ import Status from './Status';
 import { shallow } from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress';
 import { ListItem } from 'material-ui/List';
+import { Card, CardHeader } from 'material-ui/Card';
 
 describe('<Status />', () => {
     const status = {
@@ -51,12 +52,10 @@ describe('<Status />', () => {
     it('should display list with data', () => {
         const wrapper = shallow(<Status isLoading={false} data={status}/>);
         expect(wrapper.contains(<LinearProgress />)).toBe(false);
-        expect(wrapper.find(ListItem).length).toBe(3);
-        expect(wrapper.find({primaryText: 'Disk'}).prop('secondaryText')).toEqual('20.22 %');
-        expect(wrapper.find({primaryText: 'CPU'}).prop('secondaryText')).toEqual('# 2');
-        expect(wrapper.find({primaryText: 'CPU'}).prop('nestedItems').length).toEqual(status.metrics.cpuInfo.length);
-        expect(wrapper.find({primaryText: 'Users'}).prop('secondaryText')).toEqual('# 2');
-        expect(wrapper.find({primaryText: 'Users'}).prop('nestedItems').length).toEqual(status.metrics.users.length);
+        expect(wrapper.find(Card).length).toBe(4);
+        expect(wrapper.find({title: 'Disk'}).prop('subtitle')).toEqual('20.22 %');
+        expect(wrapper.find({title: 'CPU'}).prop('subtitle')).toEqual('# 2');
+        expect(wrapper.find({title: 'Users'}).prop('subtitle')).toEqual('# 2');
     });
 
 });
