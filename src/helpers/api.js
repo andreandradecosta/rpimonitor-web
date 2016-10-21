@@ -1,20 +1,10 @@
 import axios from 'axios';
 
-
-export async function getSnapshot() {
+export async function getData(resource) {
     try {
-        const response = await axios.get('/api/snapshot');
+        const response = await axios.get(`/api/${resource}`);
         return response.data;
-    } catch(error) {
-        console.warn('Error in getSnapshot', error);
-    }
-}
-
-export async function getStatus() {
-    try {
-        const response = await axios.get('/api/status');
-        return response.data;
-    } catch(error) {
-        console.warn('Error in getStatus', error);
+    } catch (err) {
+        console.warn(`Error in getData(${resource})`, err);
     }
 }

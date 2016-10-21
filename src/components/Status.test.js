@@ -49,7 +49,7 @@ describe('<Status />', () => {
     });
 
     it('should display list with data', () => {
-        const wrapper = shallow(<Status isLoading={false} status={status}/>);
+        const wrapper = shallow(<Status isLoading={false} data={status}/>);
         expect(wrapper.contains(<LinearProgress />)).toBe(false);
         expect(wrapper.find(ListItem).length).toBe(3);
         expect(wrapper.find({primaryText: 'Disk'}).prop('secondaryText')).toEqual('20.22 %');

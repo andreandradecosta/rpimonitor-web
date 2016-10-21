@@ -57,12 +57,12 @@ function StatusDetails(status) {
 }
 
 
-function Status({isLoading, status}) {
+function Status({isLoading, data}) {
     let details;
     if (isLoading) {
         details = <LinearProgress mode="indeterminate" />
     } else {
-        details = StatusDetails(status)
+        details = StatusDetails(data)
     }
     return (
         <Card>
@@ -72,7 +72,7 @@ function Status({isLoading, status}) {
 }
 
 Status.propTypes = {
-    status: PropTypes.object,
+    data: PropTypes.object,
     isLoading: PropTypes.bool.isRequired
 }
 
