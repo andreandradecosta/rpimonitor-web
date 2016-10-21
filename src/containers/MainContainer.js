@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import AppBar from 'material-ui/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
@@ -36,9 +36,9 @@ const muiTheme = getMuiTheme({
     }
 })
 
-class Home extends Component {
-    constructor() {
-        super();
+export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             drawer: {
                 open: false
@@ -76,5 +76,3 @@ class Home extends Component {
         )
     }
 }
-
-export default Home;

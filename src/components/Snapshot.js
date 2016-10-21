@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { puke } from '../helpers/utils';
 
 
@@ -12,6 +12,11 @@ function Snapshot(props) {
                     <div>{puke(props.data)}</div>
                 </div>
             )
+}
+
+Snapshot.propTypes = {
+    data: PropTypes.object,
+    isLoading: PropTypes.bool.isRequired
 }
 
 export default Snapshot;
