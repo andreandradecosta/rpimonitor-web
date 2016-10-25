@@ -2,8 +2,7 @@ import React from 'react';
 import Status from './Status';
 import { shallow } from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress';
-import { ListItem } from 'material-ui/List';
-import { Card, CardHeader } from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 
 describe('<Status />', () => {
     const status = {
@@ -54,8 +53,6 @@ describe('<Status />', () => {
         expect(wrapper.contains(<LinearProgress />)).toBe(false);
         expect(wrapper.find(Card).length).toBe(4);
         expect(wrapper.find({title: 'Disk'}).prop('subtitle')).toEqual('20.22 %');
-        expect(wrapper.find({title: 'CPU'}).prop('subtitle')).toEqual('# 2');
-        expect(wrapper.find({title: 'Users'}).prop('subtitle')).toEqual('# 2');
     });
 
 });
