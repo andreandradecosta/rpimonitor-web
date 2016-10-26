@@ -45,12 +45,12 @@ describe('<Status />', () => {
 
     it('should render loading indicator', () => {
         const wrapper = shallow(<Status isLoading={true}/>);
-        expect(wrapper.contains(<LinearProgress />)).toBe(true);
+        expect(wrapper.contains(<LinearProgress />)).toBeTruthy();
     });
 
     it('should display list with data', () => {
         const wrapper = shallow(<Status isLoading={false} data={status}/>);
-        expect(wrapper.contains(<LinearProgress />)).toBe(false);
+        expect(wrapper.contains(<LinearProgress />)).toBeFalsy();
         expect(wrapper.find(Card).length).toBe(4);
         expect(wrapper.find({title: 'Disk'}).prop('subtitle')).toEqual('20.22 %');
     });
