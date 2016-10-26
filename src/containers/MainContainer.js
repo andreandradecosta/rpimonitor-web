@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
+import Menu from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Drawer from 'material-ui/Drawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -10,7 +11,7 @@ import { Link } from 'react-router';
 import { indigo500, indigo700} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-function Menu(props) {
+function RightMenu(props) {
     return (
         <IconMenu
             {...props}
@@ -23,10 +24,10 @@ function Menu(props) {
             <MenuItem primaryText="About" />
             <MenuItem primaryText="Sign out" />
         </IconMenu>
-    )
+    );
 }
 
-Menu.muiName = 'IconMenu';
+RightMenu.muiName = 'IconMenu';
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -36,7 +37,20 @@ const muiTheme = getMuiTheme({
     }
 })
 
-export default class Home extends React.Component {
+function LeftMenu({onMenuClick}) {
+    return (
+        <Menu>
+            <MenuItem containerElement={<Link to="/" />} onTouchTap={onMenuClick}>Status</MenuItem>
+            <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={onMenuClick}>Snapshot</MenuItem>
+            <MenuItem onTouchTap={onMenuClick}>History</MenuItem>
+            <MenuItem onTouchTap={onMenuClick}>Control</MenuItem>
+        </Menu>
+    );
+}
+
+
+export default class MainContainer extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,6 +59,7 @@ export default class Home extends React.Component {
             }
         }
     }
+
     handleDrawer(open) {
         this.setState({
             drawer: {
@@ -58,17 +73,15 @@ export default class Home extends React.Component {
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <AppBar
-                        title="My Raspberry Pi Monitor"
-                        iconElementRight={<Menu/>}
-                        onLeftIconButtonTouchTap={() => this.handleDrawer(true)}/>
+                            showMenuIconButton={true}
+                            title="My Raspberry Pi Monitor"
+                            iconElementRight={<RightMenu />}
+                            onLeftIconButtonTouchTap={() => this.handleDrawer(true)}/>
                     <Drawer
-                        docked={false}
-                        open={this.state.drawer.open}
-                        onRequestChange={(open) => this.handleDrawer(open)}>
-                            <MenuItem containerElement={<Link to="/" />} onTouchTap={() => this.handleDrawer(false)}>Status</MenuItem>
-                            <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={() => this.handleDrawer(false)}>Snapshot</MenuItem>
-                            <MenuItem onTouchTap={() => this.handleDrawer(false)}>History</MenuItem>
-                            <MenuItem onTouchTap={() => this.handleDrawer(false)}>Control</MenuItem>
+                            docked={false}
+                            open={this.state.drawer.open}
+                            onRequestChange={(open) => this.handleDrawer(open)}>
+                        <LeftMenu onMenuClick={() => this.handleDrawer(false)}/>
                     </Drawer>
                     {this.props.children}
                 </div>
