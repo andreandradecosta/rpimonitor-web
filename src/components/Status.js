@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { Card, CardHeader } from 'material-ui/Card';
 import LinearProgress from 'material-ui/LinearProgress';
 import { List, ListItem } from 'material-ui/List';
 import StorageIcon from 'material-ui/svg-icons/device/storage';
@@ -7,91 +7,88 @@ import UserIcon from 'material-ui/svg-icons/action/account-box'
 import CPUIcon from 'material-ui/svg-icons/hardware/developer-board';
 import ComputerIcon from 'material-ui/svg-icons/hardware/computer';
 import { resumeItems } from '../helpers/utils';
+import { containerStyle, cardStyle} from '../styles';
 
-const containerStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    alignItems: 'baseline',
-    alignContent: 'flex-start',
-    margin: '10px auto'
-}
 
-const cardStyle = {
-    margin: '10px',
-    flexBasis: '300px'
-}
 
-function StatusDetails(status) {
+function Host({host}) {
     return (
-            <div style={containerStyle}>
-                <Card style={cardStyle}>
-                    <CardHeader
-                        avatar={<ComputerIcon />}
-                        title={status.metrics.host.hostname}
-                        subtitle={`${status.metrics.host.platform} (${status.metrics.host.kernelVersion})`} />
-                </Card>
-                <Card style={cardStyle}>
-                    <CardHeader
-                        avatar={<StorageIcon />}
-                        title="Disk"
-                        subtitle={`${status.metrics.diskUsage.usedPercent.toFixed(2)} %`} />
-
-                </Card>
-                <Card style={cardStyle} expanded={true}>
-                    <CardHeader
-                        avatar={<CPUIcon />}
-                        title="CPU" />
-                    <CardText expandable={true}>
-                        <List>
-                            {
-                                resumeItems(status.metrics.cpuInfo, 'modelName').map((cpu, i) =>
-                                    <ListItem
-                                        disableKeyboardFocus={true}
-                                        disabled={true}
-                                        key={i}
-                                        primaryText={cpu.value}
-                                        secondaryText={`# ${cpu.count}`} />
-                                )
-                            }
-                        </List>
-                    </CardText>
-                </Card>
-                <Card style={cardStyle} expanded={true}>
-                    <CardHeader
-                        avatar={<UserIcon />}
-                        title="Users" />
-                    <CardText expandable={true}>
-                        <List>
-                            {
-                                resumeItems(status.metrics.users, 'user').map((u, i) =>
-                                    <ListItem
-                                    disableKeyboardFocus={true}
-                                    disabled={true}
-                                    key={i}
-                                    primaryText={`${u.value}`}
-                                    secondaryText={`# ${u.count}`} />
-                                )
-                            }
-                        </List>
-                    </CardText>
-                </Card>
-            </div>
-    )
+        <Card style={cardStyle}>
+            <CardHeader
+                avatar={<ComputerIcon />}
+                title={host.hostname}
+                subtitle={`${host.platform} (${host.kernelVersion})`} />
+        </Card>
+    );
 }
 
+function Disk({diskUsage}) {
+    return (
+        <Card style={cardStyle}>
+            <CardHeader
+                avatar={<StorageIcon />}
+                title="Disk"
+                subtitle={`${diskUsage.usedPercent.toLocaleString({style: 'percent'})} %`} />
+        </Card>
+    );
+}
+
+function CPU({cpuInfo}) {
+    return (
+        <Card style={cardStyle} expanded={true}>
+            <CardHeader
+                avatar={<CPUIcon />}
+                title="CPU" />
+            <List>
+                {
+                    resumeItems(cpuInfo, 'modelName').map((cpu, i) =>
+                        <ListItem
+                            disableKeyboardFocus={true}
+                            disabled={true}
+                            key={i}
+                            primaryText={cpu.value}
+                            secondaryText={`# ${cpu.count}`} />
+                    )
+                }
+            </List>
+        </Card>
+    );
+}
+
+function UsersInfo({users}) {
+    return (
+        <Card style={cardStyle} expanded={true}>
+            <CardHeader
+                avatar={<UserIcon />}
+                title="Users" />
+                <List>
+                    {
+                        resumeItems(users, 'user').map((u, i) =>
+                            <ListItem
+                            disableKeyboardFocus={true}
+                            disabled={true}
+                            key={i}
+                            primaryText={`${u.value}`}
+                            secondaryText={`# ${u.count}`} />
+                        )
+                    }
+                </List>
+        </Card>
+
+    );
+}
 
 function Status({isLoading, data}) {
-    let details;
     if (isLoading) {
-        details = <LinearProgress mode="indeterminate" />
-    } else {
-        details = StatusDetails(data)
+        return <LinearProgress mode="indeterminate" />
     }
+    const {metrics} = data;
     return (
-        <div>
-            {details}
+        <div style={containerStyle}>
+            <Host {...metrics} />
+            <Disk {...metrics} />
+            <CPU {...metrics} />
+            <UsersInfo {...metrics} />
         </div>
     )
 }
