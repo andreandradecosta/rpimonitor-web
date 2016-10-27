@@ -42,7 +42,7 @@ function LeftMenu({onMenuClick}) {
         <Menu>
             <MenuItem containerElement={<Link to="/" />} onTouchTap={onMenuClick}>Status</MenuItem>
             <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={onMenuClick}>Snapshot</MenuItem>
-            <MenuItem onTouchTap={onMenuClick}>History</MenuItem>
+            <MenuItem containerElement={<Link to="history"/>} onTouchTap={onMenuClick}>History</MenuItem>
             <MenuItem onTouchTap={onMenuClick}>Control</MenuItem>
         </Menu>
     );
