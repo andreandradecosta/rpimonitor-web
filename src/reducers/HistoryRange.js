@@ -1,12 +1,11 @@
 
-
-export default function historyRange(state = {}, action) {
+const historyRange = (state = {}, action) => {
     switch (action.type) {
         case 'CHANGE_RANGE':
-            let newState = {...state};
-            newState[action.date] = action.value;
-            return newState;
+            return {...state, [action.date]:  action.value};
         default:
             return state;
     }
-}
+};
+
+export default historyRange;
