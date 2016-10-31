@@ -7,7 +7,6 @@ import { changeRange } from '../actions';
 const styles = {
     container: {
         margin: '20px'
-
     },
     toolbar: {
         display: 'flex',
@@ -24,7 +23,7 @@ const styles = {
     }
 }
 
-const RangeSelectorBar = ({start, end, onDateChange}) => (
+let RangeSelectorBar = ({start, end, onDateChange}) => (
     <div style={styles.toolbar}>
         <DatePicker
             floatingLabelText="Start"
@@ -41,14 +40,6 @@ const RangeSelectorBar = ({start, end, onDateChange}) => (
             value={end}
             onChange={(event, date) => onDateChange('end', date)} />
     </div>
-
-);
-
-let History = (props) => (
-    <Paper style={styles.container}>
-        <RangeSelectorBar {...props}/>
-        <h3>Results</h3>
-    </Paper>
 );
 
 const mapStateToProps = (state) => (
@@ -60,13 +51,24 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
     {
-        onDateChange: (date, value) => dispatch(changeRange(date, value))
+        onDateChange(date, value) {
+            dispatch(changeRange(date, value))    
+        }
     }
 );
 
-History = connect(
+RangeSelectorBar = connect(
     mapStateToProps,
     mapDispatchToProps
-)(History);
+)(RangeSelectorBar);
+
+
+const History = (props) => (
+    <Paper style={styles.container}>
+        <RangeSelectorBar/>
+        <h3>Results</h3>
+    </Paper>
+);
+
 
 export default History;
