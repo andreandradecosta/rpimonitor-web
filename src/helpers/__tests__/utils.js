@@ -1,4 +1,4 @@
-import { resumeItems } from './utils';
+import { resumeItems } from '../utils';
 
 describe('utils', () => {
 
