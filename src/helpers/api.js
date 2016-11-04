@@ -1,10 +1,16 @@
 import axios from 'axios';
+import moment from 'moment';
 
-export async function getData(resource) {
-    try {
-        const response = await axios.get(`/api/${resource}`);
-        return response.data;
-    } catch (err) {
-        console.warn(`Error in getData(${resource})`, err);
-    }
-}
+export const getData = (resource) =>
+     axios.get(`/api/${resource}`).then((response) => response.data);
+
+const dateFormat = 'YYYY-MM-DD';
+
+export const getHistory = (start, end) =>
+    axios.get(`/api/history`, {
+        params: {
+            start: moment(start).format(dateFormat),
+            end: moment(end).format(dateFormat)
+        }
+    })
+    .then((response) => response.data);

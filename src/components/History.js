@@ -1,72 +1,69 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import DatePicker from 'material-ui/DatePicker';
 import Paper from 'material-ui/Paper';
-import { changeRange } from '../actions';
+import DataPanel from './DataPanel';
+import { historyStyles } from '../styles';
 
-const styles = {
-    container: {
-        margin: '20px'
-    },
-    toolbar: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'start',
-        alignItems: 'baseline',
-        alignContent: 'flex-start',
-
-    },
-    datePicker: {
-        marginLeft: '20px',
-        marginRight: '20px'
-    }
-}
-
-let RangeSelectorBar = ({start, end, onDateChange}) => (
-    <div style={styles.toolbar}>
+const HistoryDatePicker = ({floatingLabelText, value, onChange}) => {
+    const dateValue = typeof value === 'undefined'? undefined: new Date(value);
+    return (
         <DatePicker
-            floatingLabelText="Start"
-            style={styles.datePicker}
+            style={historyStyles.datePicker}
             autoOk={true}
             container="inline"
-            value={start}
-            onChange={(event, date) => onDateChange('start', date)} />
-        <DatePicker
-            floatingLabelText="End"
-            style={styles.datePicker}
-            autoOk={true}
-            container="inline"
-            value={end}
-            onChange={(event, date) => onDateChange('end', date)} />
-    </div>
+            firstDayOfWeek={0}
+            floatingLabelText={floatingLabelText}
+            value={dateValue}
+            onChange={onChange} />
+    )
+};
+
+const RangeSelectorBar = ({start, end, onDateChange}) => (
+        <div style={historyStyles.toolbar}>
+            <HistoryDatePicker
+                floatingLabelText="Start"
+                value={start}
+                onChange={(event, date) => onDateChange('start', date)} />
+            <HistoryDatePicker
+                floatingLabelText="End"
+                value={end}
+                onChange={(event, date) => onDateChange('end', date)} />
+        </div>
 );
 
-const mapStateToProps = (state) => (
-    {
-        start: state.historyRange.start,
-        end: state.historyRange.end
-    }
+const ResultsPanel = ({isFetching, errorMessage, onRetry, result}) => (
+    <DataPanel
+        isFetching={isFetching}
+        errorMessage={errorMessage}
+        onRetry={onRetry}>
+            <h3>Results</h3>
+            <p>{isFetching? 'Loading...': ''}</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date/Time</th>
+                        <th>Used Memory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        result.map((data, i) =>
+                                <tr key={i}>
+                                    <td>{data.localTime}</td>
+                                    <td>{data.metrics.virtualMemory.usedpercent}</td>
+                                </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+    </DataPanel>
 );
-
-const mapDispatchToProps = (dispatch) => (
-    {
-        onDateChange(date, value) {
-            dispatch(changeRange(date, value))    
-        }
-    }
-);
-
-RangeSelectorBar = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(RangeSelectorBar);
 
 
 const History = (props) => (
-    <Paper style={styles.container}>
-        <RangeSelectorBar/>
-        <h3>Results</h3>
+    <Paper style={historyStyles.container}>
+        <RangeSelectorBar {...props} />
+        <ResultsPanel {...props} />
     </Paper>
 );
 

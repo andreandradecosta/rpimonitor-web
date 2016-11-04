@@ -20,14 +20,16 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-tap-event-plugin": "^1.0.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "json-server": "json-server --delay 500 --port 3001 --routes fake_server/routes.json fake_server/db.js",
+    "json-server": "json-server --delay 5000 --port 3001 --routes fake_server/routes.json fake_server/db.js",
     "start-all": "nf start"
   },
   "eslintConfig": {
