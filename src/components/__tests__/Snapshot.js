@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Snapshot from './Snapshot';
+import Snapshot from '../Snapshot';
 import LinearProgress from 'material-ui/LinearProgress';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import MainContainer from './MainContainer';
+import MainContainer from '../MainContainer';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress';
-import DataPanel from './DataPanel';
-import ErrorDialog from './ErrorDialog';
+import DataPanel from '../DataPanel';
+import ErrorDialog from '../ErrorDialog';
 
 describe('<DataPanel />', () => {
 
