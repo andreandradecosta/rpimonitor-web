@@ -1,9 +1,8 @@
 import React from 'react';
 import { getData } from '../helpers/api';
 
-export default function InfoContainer(resource, InfoComponent) {
-
-    return class extends React.Component {
+const InfoContainer = (resource, InfoComponent) =>
+    class extends React.Component {
 
         constructor(props) {
             super(props);
@@ -31,4 +30,6 @@ export default function InfoContainer(resource, InfoComponent) {
                         data={this.state.data} />
         }
     };
-}
+
+
+export default InfoContainer;

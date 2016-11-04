@@ -11,21 +11,19 @@ import { Link } from 'react-router';
 import { indigo500, indigo700} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-function RightMenu(props) {
-    return (
-        <IconMenu
-            {...props}
-            iconButtonElement={
-                <IconButton><MoreVertIcon/></IconButton>
-            }
-            targetOrigin={{horizontal: 'right', vertical: 'top'}}
-            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-        >
-            <MenuItem primaryText="About" />
-            <MenuItem primaryText="Sign out" />
-        </IconMenu>
-    );
-}
+const RightMenu = (props) => (
+    <IconMenu
+        {...props}
+        iconButtonElement={
+            <IconButton><MoreVertIcon/></IconButton>
+        }
+        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+    >
+        <MenuItem primaryText="About" />
+        <MenuItem primaryText="Sign out" />
+    </IconMenu>
+);
 
 RightMenu.muiName = 'IconMenu';
 
@@ -37,16 +35,15 @@ const muiTheme = getMuiTheme({
     }
 })
 
-function LeftMenu({onMenuClick}) {
-    return (
-        <Menu>
-            <MenuItem containerElement={<Link to="/" />} onTouchTap={onMenuClick}>Status</MenuItem>
-            <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={onMenuClick}>Snapshot</MenuItem>
-            <MenuItem containerElement={<Link to="history"/>} onTouchTap={onMenuClick}>History</MenuItem>
-            <MenuItem onTouchTap={onMenuClick}>Control</MenuItem>
-        </Menu>
-    );
-}
+const LeftMenu = ({onMenuClick}) => (
+    <Menu>
+        <MenuItem containerElement={<Link to="/" />} onTouchTap={onMenuClick}>Status</MenuItem>
+        <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={onMenuClick}>Snapshot</MenuItem>
+        <MenuItem containerElement={<Link to="history"/>} onTouchTap={onMenuClick}>History</MenuItem>
+        <MenuItem onTouchTap={onMenuClick}>Control</MenuItem>
+    </Menu>
+);
+
 
 
 export default class MainContainer extends React.Component {

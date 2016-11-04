@@ -11,74 +11,69 @@ import { containerStyle, cardStyle} from '../styles';
 
 
 
-function Host({host}) {
-    return (
-        <Card style={cardStyle}>
-            <CardHeader
-                avatar={<ComputerIcon />}
-                title={host.hostname}
-                subtitle={`${host.platform} (${host.kernelVersion})`} />
-        </Card>
-    );
-}
+const Host = ({host}) => (
+    <Card style={cardStyle}>
+        <CardHeader
+            avatar={<ComputerIcon />}
+            title={host.hostname}
+            subtitle={`${host.platform} (${host.kernelVersion})`} />
+    </Card>
+);
 
-function Disk({diskUsage}) {
-    return (
-        <Card style={cardStyle}>
-            <CardHeader
-                avatar={<StorageIcon />}
-                title="Disk"
-                subtitle={`${diskUsage.usedPercent.toLocaleString({style: 'percent'})} %`} />
-        </Card>
-    );
-}
 
-function CPU({cpuInfo}) {
-    return (
-        <Card style={cardStyle} expanded={true}>
-            <CardHeader
-                avatar={<CPUIcon />}
-                title="CPU" />
+const Disk = ({diskUsage}) => (
+    <Card style={cardStyle}>
+        <CardHeader
+            avatar={<StorageIcon />}
+            title="Disk"
+            subtitle={`${diskUsage.usedPercent.toLocaleString({style: 'percent'})} %`} />
+    </Card>
+);
+
+
+const CPU = ({cpuInfo}) => (
+    <Card style={cardStyle} expanded={true}>
+        <CardHeader
+            avatar={<CPUIcon />}
+            title="CPU" />
+        <List>
+            {
+                resumeItems(cpuInfo, 'modelName').map((cpu, i) =>
+                    <ListItem
+                        disableKeyboardFocus={true}
+                        disabled={true}
+                        key={i}
+                        primaryText={cpu.value}
+                        secondaryText={`# ${cpu.count}`} />
+                )
+            }
+        </List>
+    </Card>
+);
+
+
+const UsersInfo = ({users}) => (
+    <Card style={cardStyle} expanded={true}>
+        <CardHeader
+            avatar={<UserIcon />}
+            title="Users" />
             <List>
                 {
-                    resumeItems(cpuInfo, 'modelName').map((cpu, i) =>
+                    resumeItems(users, 'user').map((u, i) =>
                         <ListItem
-                            disableKeyboardFocus={true}
-                            disabled={true}
-                            key={i}
-                            primaryText={cpu.value}
-                            secondaryText={`# ${cpu.count}`} />
+                        disableKeyboardFocus={true}
+                        disabled={true}
+                        key={i}
+                        primaryText={`${u.value}`}
+                        secondaryText={`# ${u.count}`} />
                     )
                 }
             </List>
-        </Card>
-    );
-}
+    </Card>
 
-function UsersInfo({users}) {
-    return (
-        <Card style={cardStyle} expanded={true}>
-            <CardHeader
-                avatar={<UserIcon />}
-                title="Users" />
-                <List>
-                    {
-                        resumeItems(users, 'user').map((u, i) =>
-                            <ListItem
-                            disableKeyboardFocus={true}
-                            disabled={true}
-                            key={i}
-                            primaryText={`${u.value}`}
-                            secondaryText={`# ${u.count}`} />
-                        )
-                    }
-                </List>
-        </Card>
+);
 
-    );
-}
-
-function Status({isLoading, data}) {
+const Status = ({isLoading, data}) => {
     if (isLoading) {
         return <LinearProgress mode="indeterminate" />
     }

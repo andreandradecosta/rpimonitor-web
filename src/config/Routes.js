@@ -7,13 +7,13 @@ import InfoContainer from '../containers/InfoContainer';
 import HistoryContainer from '../containers/HistoryContainer';
 
 const Routes = () => (
-        <Router history={browserHistory}>
-            <Route path='/' component={MainContainer}>
-                <IndexRoute component={InfoContainer('status', Status)} />
-                <Route path='snapshot' component={InfoContainer('snapshot', Snapshot)} />
-                <Route path='history' component={HistoryContainer} />
-            </Route>
-        </Router>
+    <Router history={browserHistory}>
+        <Route path='/' component={MainContainer}>
+            <IndexRoute component={InfoContainer('status', Status)} />
+            <Route path='snapshot' component={InfoContainer('snapshot', Snapshot)} />
+            <Route path='history' component={HistoryContainer} />
+        </Route>
+    </Router>
 );
 
 export default Routes;
