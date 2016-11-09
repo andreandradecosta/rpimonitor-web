@@ -1,35 +1,48 @@
 import React from 'react';
-import { getData } from '../helpers/api';
+import { connect } from 'react-redux';
+import Status from '../components/Status';
+import Snapshot from '../components/Snapshot';
+import DataPanel from '../components/DataPanel';
+import * as actions from '../actions';
+import { getResult, getIsFetching, getErrorMessage } from '../reducers/Data';
 
-const InfoContainer = (resource, InfoComponent) =>
-    class extends React.Component {
+const InfoContainer = (resource, InfoComponent) => {
 
-        constructor(props) {
-            super(props);
-            this.state = {
-                isLoading: true,
-                data: {}
-            }
+    var BaseContainer = class extends React.Component {
+
+        componentDidMount() {
+            this.fetchData();
         }
 
-        async componentDidMount() {
-            try {
-                const data = await getData(resource);
-                this.setState({
-                    data,
-                    isLoading: false
-                })
-            } catch (err) {
-                console.warn('Error in InfoContainer', err);
-            }
+        fetchData() {
+            this.props.fetchData(resource);
         }
 
         render() {
-            return <InfoComponent
-                        isLoading={this.state.isLoading}
-                        data={this.state.data} />
+            const { isFetching, result, errorMessage } = this.props;
+            return (
+                <DataPanel
+                    isFetching={isFetching}
+                    errorMessage={errorMessage}
+                    onRetry={() => this.fetchData()}>
+                        <InfoComponent
+                            data={result} />
+                </DataPanel>
+            )
         }
     };
 
+    const mapStateToProps = (state) => (
+        {
+            result: getResult(state, resource),
+            isFetching: getIsFetching(state),
+            errorMessage: getErrorMessage(state)
+        }
+    );
 
-export default InfoContainer;
+    return connect(mapStateToProps, actions)(BaseContainer);
+}
+
+export const StatusContainer = InfoContainer('status', Status);
+
+export const SnapshotContainer = InfoContainer('snapshot', Snapshot);
