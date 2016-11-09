@@ -55,10 +55,10 @@ const history = combineReducers({
 export default history;
 
 //Selectors
-export const getFilter = (state) => state.filter
+export const getFilter = (state) => state.history.filter
 
-export const getResult = (state) => state.result;
+export const getResult = (state) => state.history.result;
 
-export const getIsFetching = (state, start, end) => state.isFetching;
+export const getIsFetching = (state, start, end) => state.history.isFetching;
 
-export const getErrorMessage = (state, start, end) => state.errorMessage;
+export const getErrorMessage = (state, start, end) => state.history.errorMessage;
