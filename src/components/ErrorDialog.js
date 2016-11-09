@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -10,12 +10,6 @@ export default class ErrorDialog extends React.Component {
         };
     }
 
-    handleOpen() {
-        this.setState({
-            open: true
-        });
-    }
-
     handleClose() {
         this.setState({
             open: false
@@ -23,7 +17,6 @@ export default class ErrorDialog extends React.Component {
     }
 
     handleRetry() {
-        console.log(this);
         this.handleClose();
         this.props.onRetry();
     }
@@ -55,3 +48,8 @@ export default class ErrorDialog extends React.Component {
         )
     }
 };
+
+ErrorDialog.propTypes = {
+    message:  PropTypes.string.isRequired,
+    onRetry: PropTypes.func.isRequired
+}
