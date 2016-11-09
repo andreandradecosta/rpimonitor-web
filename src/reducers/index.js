@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import history from './History';
-import data from './Data';
+import info from './Info';
 
 const appReducer = combineReducers({
-    data,
+    info,
     history
 });
 

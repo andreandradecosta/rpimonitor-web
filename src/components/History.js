@@ -1,7 +1,7 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
 import Paper from 'material-ui/Paper';
-import DataPanel from './DataPanel';
+import InfoPanel from './InfoPanel';
 import { historyStyles } from '../styles';
 
 const HistoryDatePicker = ({floatingLabelText, value, onChange}) => {
@@ -32,7 +32,7 @@ const RangeSelectorBar = ({start, end, onDateChange}) => (
 );
 
 const ResultsPanel = ({isFetching, errorMessage, onRetry, result}) => (
-    <DataPanel
+    <InfoPanel
         isFetching={isFetching}
         errorMessage={errorMessage}
         onRetry={onRetry}>
@@ -56,7 +56,7 @@ const ResultsPanel = ({isFetching, errorMessage, onRetry, result}) => (
                     }
                 </tbody>
             </table>
-    </DataPanel>
+    </InfoPanel>
 );
 
 

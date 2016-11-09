@@ -2,32 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Status from '../components/Status';
 import Snapshot from '../components/Snapshot';
-import DataPanel from '../components/DataPanel';
+import InfoPanel from '../components/InfoPanel';
 import * as actions from '../actions';
-import { getResult, getIsFetching, getErrorMessage } from '../reducers/Data';
+import { getResult, getIsFetching, getErrorMessage } from '../reducers/Info';
 
 const InfoContainer = (resource, InfoComponent) => {
 
     var BaseContainer = class extends React.Component {
 
         componentDidMount() {
-            this.fetchData();
+            this.fetchInfo();
         }
 
-        fetchData() {
-            this.props.fetchData(resource);
+        fetchInfo() {
+            this.props.fetchInfo(resource);
         }
 
         render() {
             const { isFetching, result, errorMessage } = this.props;
             return (
-                <DataPanel
+                <InfoPanel
                     isFetching={isFetching}
                     errorMessage={errorMessage}
-                    onRetry={() => this.fetchData()}>
+                    onRetry={() => this.fetchInfo()}>
                         <InfoComponent
                             data={result} />
-                </DataPanel>
+                </InfoPanel>
             )
         }
     };

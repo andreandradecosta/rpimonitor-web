@@ -1,22 +1,22 @@
 import * as api from '../helpers/api';
 
 
-export const fetchData = (resource) => (dispatch) => {
+export const fetchInfo = (resource) => (dispatch) => {
     dispatch({
-        type: 'FETCH_DATA_REQUEST',
+        type: 'FETCH_INFO_REQUEST',
         resource
     });
-    return api.getData(resource).then(
+    return api.getInfo(resource).then(
         result => {
             dispatch({
-                type: 'FETCH_DATA_SUCCESS',
+                type: 'FETCH_INFO_SUCCESS',
                 resource,
                 result
             });
         },
         error => {
             dispatch({
-                type: 'FETCH_DATA_FAILURE',
+                type: 'FETCH_INFO_FAILURE',
                 message: `Request error: ${error.message}`
             })
         }

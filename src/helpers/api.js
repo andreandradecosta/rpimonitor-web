@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-export const getData = (resource) =>
+export const getInfo = (resource) =>
      axios.get(`/api/${resource}`).then((response) => response.data);
 
 const dateFormat = 'YYYY-MM-DD';
