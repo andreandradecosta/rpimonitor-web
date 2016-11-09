@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import History from '../components/History';
-import { getFilter, getResult, getIsFetching, getErrorMessage } from '../reducers';
+import { getFilter, getResult, getIsFetching, getErrorMessage } from '../reducers/History';
 import * as actions from '../actions';
 
 class HistoryContainer extends React.Component {
@@ -21,8 +21,7 @@ class HistoryContainer extends React.Component {
     fetchData() {
         const { start, end } = this.state;
         if (start && end) {
-            const { fetchHistory } = this.props;
-            fetchHistory(start, end);
+            this.props.fetchHistory(start, end);
         }
     }
 
