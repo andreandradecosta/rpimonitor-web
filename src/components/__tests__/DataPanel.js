@@ -2,11 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import LinearProgress from 'material-ui/LinearProgress';
 import DataPanel from '../DataPanel';
-import ErrorDialog from '../ErrorDialog';
 
 describe('<DataPanel />', () => {
 
     const children = <p>Content</p>
+    
     it('should contains a loading indicator', () => {
         const wrapper = shallow(<DataPanel
                                     isFetching={true}
@@ -15,7 +15,7 @@ describe('<DataPanel />', () => {
                                 </DataPanel>);
         expect(wrapper.contains(children)).toBeTruthy();
         expect(wrapper.contains(<LinearProgress />)).toBeTruthy();
-        expect(wrapper.contains(<ErrorDialog />)).toBeFalsy();
+        expect(wrapper.find('ErrorDialog').length).toBe(0);
     });
 
     it('should contains error dialog', () => {
