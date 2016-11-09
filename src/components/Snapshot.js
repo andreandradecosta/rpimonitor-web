@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { containerStyle, cardStyle } from '../styles';
 import { Card, CardHeader } from 'material-ui/Card';
-import LinearProgress from 'material-ui/LinearProgress';
 import { List, ListItem } from 'material-ui/List';
 
 
@@ -59,26 +58,23 @@ const Memory = ({virtualMemory}) => (
 
 
 
-const Snapshot = ({isLoading, data}) => {
-    if (isLoading) {
-        return <LinearProgress mode="indeterminate" />
-    }
-
+const Snapshot = ({data = []}) => {
     const { metrics } = data;
     return (
         <div style={containerStyle}>
-            <Uptime {...metrics} />
-            <Temperature {...metrics} />
-            <CPU {...metrics} />
-            <Load {...metrics} />
-            <Memory {...metrics} />
+            {metrics? [
+                <Uptime {...metrics} key="uptime"/>,
+                <Temperature {...metrics} key="temperature"/>,
+                <CPU {...metrics} key="cpu"/>,
+                <Load {...metrics} key="load"/>,
+                <Memory {...metrics} key="memory"/>,
+            ]: []}
         </div>
     );
 }
 
 Snapshot.propTypes = {
     data: PropTypes.object,
-    isLoading: PropTypes.bool.isRequired
 }
 
 export default Snapshot;

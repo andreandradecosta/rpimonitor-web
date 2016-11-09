@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Card, CardHeader } from 'material-ui/Card';
-import LinearProgress from 'material-ui/LinearProgress';
 import { List, ListItem } from 'material-ui/List';
 import StorageIcon from 'material-ui/svg-icons/device/storage';
 import UserIcon from 'material-ui/svg-icons/action/account-box'
@@ -73,24 +72,22 @@ const UsersInfo = ({users}) => (
 
 );
 
-const Status = ({isLoading, data}) => {
-    if (isLoading) {
-        return <LinearProgress mode="indeterminate" />
-    }
+const Status = ({data = {}}) => {
     const {metrics} = data;
     return (
         <div style={containerStyle}>
-            <Host {...metrics} />
-            <Disk {...metrics} />
-            <CPU {...metrics} />
-            <UsersInfo {...metrics} />
+            {metrics? [
+                <Host {...metrics} key="host"/>,
+                <Disk {...metrics} key="disk"/>,
+                <CPU {...metrics} key="cpu"/>,
+                <UsersInfo {...metrics} key="users"/>
+            ]: []}
         </div>
     )
 }
 
 Status.propTypes = {
     data: PropTypes.object,
-    isLoading: PropTypes.bool.isRequired
 }
 
 export default Status;
