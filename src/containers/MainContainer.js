@@ -11,20 +11,28 @@ import { Link } from 'react-router';
 import { indigo500, indigo700} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import About from '../components/About';
+import { connect } from 'react-redux';
+import { getIsAuthenticated } from '../reducers/Auth';
+import * as actions from '../actions';
 
-const RightMenu = (props) => (
-    <IconMenu
-        iconStyle={props.iconStyle}
-        iconButtonElement={
-            <IconButton><MoreVertIcon/></IconButton>
-        }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-    >
-        <MenuItem primaryText="About" onTouchTap={props.onAboutClick}/>
-        <MenuItem primaryText="Sign out" />
-    </IconMenu>
-);
+const RightMenu = ({ isAuthenticated, iconStyle, onAboutClick, onSignOutClick }) => {
+    const LoginMenu = isAuthenticated ?
+            <MenuItem primaryText="Sign out" onTouchTap={onSignOutClick}/> :
+            <MenuItem primaryText="Login" containerElement={<Link to="login" />}/>
+    return (
+        <IconMenu
+            iconStyle={iconStyle}
+            iconButtonElement={
+                <IconButton><MoreVertIcon/></IconButton>
+            }
+            targetOrigin={{horizontal: 'right', vertical: 'top'}}
+            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+        >
+            <MenuItem primaryText="About" onTouchTap={onAboutClick}/>
+            {LoginMenu}
+        </IconMenu>
+    )
+};
 
 RightMenu.muiName = 'IconMenu';
 
@@ -47,7 +55,7 @@ const LeftMenu = ({onMenuClick}) => (
 
 
 
-export default class MainContainer extends React.Component {
+class MainContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -77,6 +85,11 @@ export default class MainContainer extends React.Component {
         })
     }
 
+    handleSignOut() {
+        this.props.logout();
+        this.context.router.push('/login');
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
@@ -84,7 +97,9 @@ export default class MainContainer extends React.Component {
                     <AppBar
                             showMenuIconButton={true}
                             title="My Raspberry Pi Monitor"
-                            iconElementRight={<RightMenu onAboutClick={() => this.handleAbout(true)}/>}
+                            iconElementRight={<RightMenu {...this.props}
+                                                onAboutClick={() => this.handleAbout(true)}
+                                                onSignOutClick={() => this.handleSignOut()}/>}
                             onLeftIconButtonTouchTap={() => this.handleDrawer(true)}/>
                     <Drawer
                             docked={false}
@@ -99,3 +114,18 @@ export default class MainContainer extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => (
+    {
+        isAuthenticated: getIsAuthenticated(state)
+    }
+)
+
+MainContainer.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+
+MainContainer = connect(mapStateToProps, actions)(MainContainer)
+
+
+export default MainContainer;
