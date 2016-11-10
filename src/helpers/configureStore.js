@@ -5,6 +5,12 @@ import appReducer from '../reducers';
 
 const configureStore = () => {
 
+    const initialState = {
+        auth: {
+            token: localStorage.getItem('token')
+        }
+    }
+
     const middlewares = [thunk];
     let composeEnhancers = compose;
     if (process.env.NODE_ENV !== 'production') {
@@ -17,6 +23,7 @@ const configureStore = () => {
 
     return createStore(
         appReducer,
+        initialState,
         composeEnhancers(
             applyMiddleware(...middlewares)
         )
