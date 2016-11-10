@@ -10,17 +10,18 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Link } from 'react-router';
 import { indigo500, indigo700} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import About from '../components/About';
 
 const RightMenu = (props) => (
     <IconMenu
-        {...props}
+        iconStyle={props.iconStyle}
         iconButtonElement={
             <IconButton><MoreVertIcon/></IconButton>
         }
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
     >
-        <MenuItem primaryText="About" />
+        <MenuItem primaryText="About" onTouchTap={props.onAboutClick}/>
         <MenuItem primaryText="Sign out" />
     </IconMenu>
 );
@@ -53,6 +54,9 @@ export default class MainContainer extends React.Component {
         this.state = {
             drawer: {
                 open: false
+            },
+            about: {
+                open: false
             }
         }
     }
@@ -65,6 +69,14 @@ export default class MainContainer extends React.Component {
         })
     }
 
+    handleAbout(open) {
+        this.setState({
+            about: {
+                open
+            }
+        })
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
@@ -72,7 +84,7 @@ export default class MainContainer extends React.Component {
                     <AppBar
                             showMenuIconButton={true}
                             title="My Raspberry Pi Monitor"
-                            iconElementRight={<RightMenu />}
+                            iconElementRight={<RightMenu onAboutClick={() => this.handleAbout(true)}/>}
                             onLeftIconButtonTouchTap={() => this.handleDrawer(true)}/>
                     <Drawer
                             docked={false}
@@ -80,6 +92,7 @@ export default class MainContainer extends React.Component {
                             onRequestChange={(open) => this.handleDrawer(open)}>
                         <LeftMenu onMenuClick={() => this.handleDrawer(false)}/>
                     </Drawer>
+                    <About open={this.state.about.open} onClose={() => this.handleAbout(false)} />
                     {this.props.children}
                 </div>
             </MuiThemeProvider>
