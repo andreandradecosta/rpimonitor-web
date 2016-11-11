@@ -1,3 +1,6 @@
+import { indigo500, indigo700} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 export const containerStyle = {
     display: 'flex',
     flexDirection: 'row',
@@ -31,3 +34,11 @@ export const historyStyles = {
         marginRight: '20px'
     }
 }
+
+export const muiTheme = getMuiTheme({
+    palette: {
+        primary1Color: indigo500,
+        primary2Color: indigo700,
+        pickerHeaderColor: indigo500
+    }
+})

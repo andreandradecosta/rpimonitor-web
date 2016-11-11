@@ -1,13 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import MainContainer from '../MainContainer';
+import Main from '../Main';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-describe('<MainContainer />', () => {
-
-    const wrapper = mount(<MainContainer />)
+describe('<Main />', () => {
+    const signOutMock = jest.fn();
+    const wrapper = mount(<Main onSignOut={signOutMock}/>)
 
     it('initially shows drawer hidden', () => {
         expect(wrapper.find('Drawer').prop('open')).toBeFalsy();
