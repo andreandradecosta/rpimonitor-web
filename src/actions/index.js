@@ -1,6 +1,25 @@
 import * as api from '../helpers/api';
 import { getToken } from '../reducers/Auth';
 
+export const login = (username, password) => (dispatch) => {
+    dispatch({
+        type: 'LOGIN_REQUEST'
+    });
+    return api.login(username, password).then(
+        result => {
+            localStorage.setItem('token', result.token);
+            return dispatch({
+                type: 'LOGIN_SUCCESS',
+                token: result.token
+            });
+        },
+        error => dispatch({
+                    type: 'LOGIN_FAILURE',
+                    errorMessage: error.message
+                })
+    )
+}
+
 export const logout = () => {
     localStorage.removeItem("token");
     return {

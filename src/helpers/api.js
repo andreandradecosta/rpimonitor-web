@@ -1,6 +1,14 @@
 import axios from 'axios';
 import moment from 'moment';
 
+export const login = (username, password) => {
+    const data = new FormData()
+    data.append('login', username);
+    data.append('password', password)
+    return axios.post('/login', data)
+        .then((response) => response.data);
+}
+
 const headers = (token) => (
     {
         'authorization': `Bearer ${token}`
@@ -19,7 +27,7 @@ const dateFormat = 'YYYY-MM-DD';
 
 export const getHistory = (start, end, token) =>
     axios.get(
-        `/api/history`,
+        '/api/history',
         {
             headers: headers(token),
             params: {
