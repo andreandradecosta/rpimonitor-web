@@ -2,12 +2,13 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import appReducer from '../reducers';
+import { getToken } from '../helpers/storage';
 
 const configureStore = () => {
 
     const initialState = {
         auth: {
-            token: localStorage.getItem('token')
+            token: getToken()
         }
     }
 

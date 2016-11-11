@@ -1,4 +1,5 @@
 import * as api from '../helpers/api';
+import * as storage from '../helpers/storage'
 import { getToken } from '../reducers/Auth';
 
 export const login = (username, password) => (dispatch) => {
@@ -7,7 +8,7 @@ export const login = (username, password) => (dispatch) => {
     });
     return api.login(username, password).then(
         result => {
-            localStorage.setItem('token', result.token);
+            storage.saveToken(result.token);
             return dispatch({
                 type: 'LOGIN_SUCCESS',
                 token: result.token
@@ -21,7 +22,7 @@ export const login = (username, password) => (dispatch) => {
 }
 
 export const logout = () => {
-    localStorage.removeItem("token");
+    storage.removeToken();
     return {
         type: 'LOGOUT_SUCCESS'
     }
