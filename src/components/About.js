@@ -17,7 +17,7 @@ const About = ({onClose, open}) => {
             actions={closeButton}>
                 <div>
                     <h1>Methods</h1>
-                    <h3>/login</h3>
+                    <h3>/auth</h3>
                     <p>Login with [login] and [password].</p>
                     <h3>/api/status</h3>
                     <p>Base Machine Info: CPU, disk usage, disk partitions, host, users.</p>

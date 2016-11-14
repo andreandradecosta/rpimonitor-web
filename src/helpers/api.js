@@ -5,7 +5,7 @@ export const login = (username, password) => {
     const data = new FormData()
     data.append('login', username);
     data.append('password', password)
-    return axios.post('/login', data)
+    return axios.post('/auth', data)
         .then((response) => response.data);
 }
 
