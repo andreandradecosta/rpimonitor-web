@@ -16,3 +16,11 @@ export const resumeItems = (items, key) => {
         return {'value': k, 'count': resume[k]}
     })
 };
+
+export const getUserInfo = (token) => {
+    const payload = token.split('.')[1]
+    if (typeof payload === 'undefined') {
+        return {}
+    }
+    return JSON.parse(atob(payload));
+}
