@@ -14,10 +14,13 @@ export const login = (username, password) => (dispatch) => {
                 token: result.token
             });
         },
-        error => dispatch({
+        error => {
+            dispatch({
                     type: 'LOGIN_FAILURE',
                     errorMessage: error.message
-                })
+            });
+            throw error;
+        }
     )
 }
 

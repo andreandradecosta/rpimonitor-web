@@ -6,8 +6,20 @@ import * as actions from '../actions';
 
 class LoginContainer extends React.Component {
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+
+    }
+
     handleLogin(username, password) {
-        this.props.login(username, password);
+        this.props.login(username, password).then(
+            () => {
+                this.context.router.replace(this.props.location.query.redirectTo || '/');
+            },
+            (err) => {
+                console.debug(err);
+            }
+        );
     }
 
     render() {
