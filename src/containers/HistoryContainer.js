@@ -15,6 +15,7 @@ class HistoryContainer extends React.Component {
     }
 
     componentDidMount() {
+        this.props.setMainTitle('History');
         this.fetchData();
     }
 

@@ -6,7 +6,7 @@ import HistoryContainer from '../containers/HistoryContainer';
 import LoginContainer from '../containers/LoginContainer';
 import EnsureLoggedInContainer from '../containers/EnsureLoggedInContainer';
 
-const Routes = () => (
+const Routes = (
     <Router history={browserHistory}>
         <Route path='/' component={MainContainer}>
             <Route component={EnsureLoggedInContainer}>

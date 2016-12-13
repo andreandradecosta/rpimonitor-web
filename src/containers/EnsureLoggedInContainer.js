@@ -20,7 +20,7 @@ class EnsureLoggedInContainer extends React.Component {
 
     render() {
         if (this.props.isAuthenticated) {
-            return this.props.children;
+            return React.cloneElement(this.props.children, { ...this.props });
         }
         return null;
     }

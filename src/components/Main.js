@@ -57,8 +57,10 @@ export default class Main extends React.Component {
             },
             about: {
                 open: false
-            }
+            },
+            title: 'My Raspberry Pi Monitor'
         }
+        this.setMainTitle = this.setMainTitle.bind(this);
     }
 
     handleDrawer(open) {
@@ -77,13 +79,20 @@ export default class Main extends React.Component {
         })
     }
 
+    setMainTitle(title) {
+        console.log(this);
+        this.setState({
+            title
+        })
+    }
+
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <AppBar
                             showMenuIconButton={true}
-                            title="My Raspberry Pi Monitor"
+                            title={this.state.title}
                             iconElementRight={<RightMenu {...this.props}
                                                 onAboutClick={() => this.handleAbout(true)}
                                                 onSignOutClick={this.props.onSignOut}/>}
@@ -95,7 +104,7 @@ export default class Main extends React.Component {
                         <LeftMenu onMenuClick={() => this.handleDrawer(false)}/>
                     </Drawer>
                     <About open={this.state.about.open} onClose={() => this.handleAbout(false)} />
-                    {this.props.children}
+                    {this.props.children ? React.cloneElement(this.props.children, { setMainTitle: this.setMainTitle }): <div/>} 
                 </div>
             </MuiThemeProvider>
         )

@@ -6,11 +6,12 @@ import InfoPanel from '../components/InfoPanel';
 import * as actions from '../actions';
 import { getResult, getIsFetching, getErrorMessage } from '../reducers/Info';
 
-const InfoContainer = (resource, InfoComponent) => {
+const InfoContainer = (resource, InfoComponent, title) => {
 
     var BaseContainer = class extends React.Component {
 
         componentDidMount() {
+            this.props.setMainTitle(title);
             this.fetchInfo();
         }
 
@@ -43,6 +44,6 @@ const InfoContainer = (resource, InfoComponent) => {
     return connect(mapStateToProps, actions)(BaseContainer);
 }
 
-export const StatusContainer = InfoContainer('status', Status);
+export const StatusContainer = InfoContainer('status', Status, 'Status');
 
-export const SnapshotContainer = InfoContainer('snapshot', Snapshot);
+export const SnapshotContainer = InfoContainer('snapshot', Snapshot, 'Snapshot');

@@ -7,7 +7,7 @@ injectTapEventPlugin();
 
 const App = ({ store }) => (
     <Provider store={store}>
-        <Routes/>
+        {Routes}
     </Provider>
 );
 
