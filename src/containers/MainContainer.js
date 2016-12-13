@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { getIsAuthenticated } from '../reducers/Auth';
+import { getIsAuthenticated, getUserInfo } from '../reducers/Auth';
 import * as actions from '../actions';
 import Main from '../components/Main';
 
@@ -23,7 +23,8 @@ class MainContainer extends React.Component {
 
 const mapStateToProps = (state) => (
     {
-        isAuthenticated: getIsAuthenticated(state)
+        isAuthenticated: getIsAuthenticated(state),
+        userInfo: getUserInfo(state)
     }
 )
 

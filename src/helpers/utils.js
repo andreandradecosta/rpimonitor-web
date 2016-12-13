@@ -17,7 +17,7 @@ export const resumeItems = (items, key) => {
     })
 };
 
-export const getUserInfo = (token) => {
+export const decodePayload = (token) => {
     const payload = token.split('.')[1]
     if (typeof payload === 'undefined') {
         return {}

@@ -1,4 +1,4 @@
-import { resumeItems, getUserInfo } from '../utils';
+import { resumeItems, decodePayload } from '../utils';
 
 describe('utils', () => {
 
@@ -21,16 +21,16 @@ describe('utils', () => {
         ]);
     });
 
-    it('getUserInfo', () => {
+    it('decodePayload', () => {
         const validToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ';
 
-        expect(getUserInfo(validToken)).toEqual({
+        expect(decodePayload(validToken)).toEqual({
             "sub": "1234567890",
             "name": "John Doe",
             "admin": true
         });
 
         const invalidToken = '';
-        expect(getUserInfo(invalidToken)).toEqual({});
+        expect(decodePayload(invalidToken)).toEqual({});
     });
 });

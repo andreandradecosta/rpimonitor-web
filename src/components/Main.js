@@ -11,7 +11,8 @@ import { Link } from 'react-router';
 import About from './About';
 import { muiTheme, appBarStyle, mainContentStyle } from '../styles';
 
-const RightMenu = ({ isAuthenticated, iconStyle, onAboutClick, onSignOutClick }) => {
+const RightMenu = ({ isAuthenticated, userInfo, iconStyle, onAboutClick, onSignOutClick }) => {
+    console.log(userInfo);
     const LoginMenu = isAuthenticated ?
             <MenuItem primaryText="Sign out" onTouchTap={onSignOutClick}/> :
             <MenuItem primaryText="Login" containerElement={<Link to="login" />}/>
@@ -80,7 +81,6 @@ export default class Main extends React.Component {
     }
 
     setMainTitle(title) {
-        console.log(this);
         this.setState({
             title
         })

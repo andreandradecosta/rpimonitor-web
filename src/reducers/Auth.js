@@ -1,3 +1,5 @@
+import { decodePayload } from '../helpers/utils';
+
 const auth = (state = {}, action) => {
     switch (action.type) {
         case 'LOGIN_REQUEST':
@@ -38,3 +40,5 @@ export const getIsAuthenticated = (state) => getToken(state) ? true: false;
 export const getIsFetching = (state) => state.auth.isFetching;
 
 export const getErrorMessage = (state) => state.auth.errorMessage;
+
+export const getUserInfo = (state) => decodePayload(getToken(state));
