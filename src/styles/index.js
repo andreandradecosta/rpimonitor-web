@@ -1,5 +1,6 @@
 import { indigo500, indigo700} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import spacing from 'material-ui/styles/spacing';
 
 export const containerStyle = {
     display: 'flex',
@@ -42,3 +43,12 @@ export const muiTheme = getMuiTheme({
         pickerHeaderColor: indigo500
     }
 })
+
+export const appBarStyle = {
+    position: 'fixed',
+    top: 0
+}
+
+export const mainContentStyle = {
+    paddingTop: spacing.desktopKeylineIncrement
+}

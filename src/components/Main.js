@@ -9,7 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Link } from 'react-router';
 import About from './About';
-import { muiTheme } from '../styles';
+import { muiTheme, appBarStyle, mainContentStyle } from '../styles';
 
 const RightMenu = ({ isAuthenticated, iconStyle, onAboutClick, onSignOutClick }) => {
     const LoginMenu = isAuthenticated ?
@@ -91,6 +91,7 @@ export default class Main extends React.Component {
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <AppBar
+                            style={appBarStyle}
                             showMenuIconButton={true}
                             title={this.state.title}
                             iconElementRight={<RightMenu {...this.props}
@@ -104,7 +105,9 @@ export default class Main extends React.Component {
                         <LeftMenu onMenuClick={() => this.handleDrawer(false)}/>
                     </Drawer>
                     <About open={this.state.about.open} onClose={() => this.handleAbout(false)} />
-                    {this.props.children ? React.cloneElement(this.props.children, { setMainTitle: this.setMainTitle }): <div/>} 
+                    <div style={mainContentStyle}>
+                        {this.props.children ? React.cloneElement(this.props.children, { setMainTitle: this.setMainTitle }): <div/>}
+                    </div>
                 </div>
             </MuiThemeProvider>
         )
