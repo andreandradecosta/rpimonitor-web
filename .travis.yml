@@ -6,7 +6,7 @@ cache:
         - node_modules
 script:
     - yarn test -- --coverage
-    - yarn run build
+    - REACT_APP_HASH=`git rev-parse --short HEAD` yarn run build
     - zip -r build.zip build/
 
 after_success:
