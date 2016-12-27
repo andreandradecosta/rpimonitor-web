@@ -30,7 +30,18 @@ describe('utils', () => {
             "admin": true
         });
 
+    });
+
+    it('decodePayload invalid', () => {
         const invalidToken = '';
         expect(decodePayload(invalidToken)).toEqual({});
-    });
+    })
+
+    it('decodePayload null', () => {
+        expect(decodePayload(null)).toEqual({});
+    })
+
+    it('decodePayload undefined', () => {
+        expect(decodePayload()).toEqual({});
+    })
 });

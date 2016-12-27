@@ -2,15 +2,16 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-const About = ({onClose, open}) => {
+const About = ({onClose, open = false}) => {
     const closeButton = <FlatButton
         label="Close"
         primary={true}
         onTouchTap={onClose}
         keyboardFocused={true}/>
+    const title = `My Raspberry Pi Monitor - ${process.env.REACT_APP_HASH || 'dev'}`;
     return  (
         <Dialog
-            title="About"
+            title={title}
             modal={false}
             open={open}
             onRequestClose={onClose}
