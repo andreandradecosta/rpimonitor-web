@@ -10,7 +10,6 @@ const HistoryDatePicker = ({floatingLabelText, value, onChange}) => {
         <DatePicker
             style={historyStyles.datePicker}
             autoOk={true}
-            container="inline"
             firstDayOfWeek={0}
             floatingLabelText={floatingLabelText}
             value={dateValue}
