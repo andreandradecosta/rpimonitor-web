@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { getIsAuthenticated, getUserInfo } from '../reducers/Auth';
 import * as actions from '../actions';
-import Main from '../components/Main';
+import Main from '../components/main';
 
 class MainContainer extends React.Component {
     static contextTypes = {
