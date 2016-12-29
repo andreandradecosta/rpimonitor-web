@@ -1,23 +1,12 @@
 import React, { PropTypes } from 'react'
 import AppBar from 'material-ui/AppBar';
-import MenuItem from 'material-ui/MenuItem';
-import Menu from 'material-ui/Menu';
 import Drawer from 'material-ui/Drawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Link } from 'react-router';
 import About from './About';
 import RightMenu from './RightMenu';
+import LeftMenu from './LeftMenu';
 import { muiTheme, appBarStyle, mainContentStyle } from '../../styles';
 
-
-const LeftMenu = ({ onMenuClick }) => (
-    <Menu>
-        <MenuItem containerElement={<Link to="/" />} onTouchTap={onMenuClick}>Status</MenuItem>
-        <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={onMenuClick}>Snapshot</MenuItem>
-        <MenuItem containerElement={<Link to="history"/>} onTouchTap={onMenuClick}>History</MenuItem>
-        <MenuItem onTouchTap={onMenuClick}>Control</MenuItem>
-    </Menu>
-);
 
 
 

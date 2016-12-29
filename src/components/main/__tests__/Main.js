@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Main from '../';
+import LeftMenu from '../LeftMenu';
+import About from '../About';
 
 describe('<Main />', () => {
     const signOutMock = jest.fn();
@@ -8,7 +10,7 @@ describe('<Main />', () => {
 
     it('renders controls', () => {
         expect(wrapper.find('AppBar').props().iconElementRight).toBeDefined();
-        expect(wrapper.find('LeftMenu').length).toEqual(1);
+        expect(wrapper.find(LeftMenu).length).toEqual(1);
     });
 
     it('initially shows drawer hidden', () => {
@@ -26,11 +28,11 @@ describe('<Main />', () => {
     });
 
     it('About is initially closed', () => {
-        expect(wrapper.find('About').prop('open')).toBeFalsy();
+        expect(wrapper.find(About).prop('open')).toBeFalsy();
     });
 
     it('shows about when clicked on menu', () => {
         wrapper.instance().handleAbout(true);
-        expect(wrapper.find('About').prop('open')).toBeTruthy();
+        expect(wrapper.find(About).prop('open')).toBeTruthy();
     });
 });
