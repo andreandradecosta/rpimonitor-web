@@ -52,3 +52,7 @@ export const appBarStyle = {
 export const mainContentStyle = {
     paddingTop: spacing.desktopKeylineIncrement
 }
+
+export const loginButtonStyle = {
+    marginTop: '7px'
+}

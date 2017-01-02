@@ -6,7 +6,7 @@ import RightMenu from '../RightMenu';
 describe('<RightMenu />', ()=> {
     it('renders without authentication', () => {
         const wrapper = shallow(<RightMenu/>);
-        expect(wrapper.find('MenuItem').get(1).props.primaryText).toEqual('Login')
+        expect(wrapper.find('RaisedButton').props().label).toEqual('Login')
     });
 
     it('renders authenticated', () => {
