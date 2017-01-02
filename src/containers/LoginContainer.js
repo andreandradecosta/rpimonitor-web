@@ -11,6 +11,10 @@ class LoginContainer extends React.Component {
 
     }
 
+    componentDidMount() {
+        this.props.setMainTitle('Login');
+    }
+
     handleLogin(username, password) {
         this.props.login(username, password).then(
             () => {
