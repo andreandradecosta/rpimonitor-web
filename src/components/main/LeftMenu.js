@@ -1,14 +1,35 @@
-import React from 'react';
-import MenuItem from 'material-ui/MenuItem';
-import Menu from 'material-ui/Menu';
-import { Link } from 'react-router';
+import React, { PropTypes } from 'react';
+import { List, ListItem, makeSelectable } from 'material-ui/List';
+
+const SelectableList = makeSelectable(List);
+SelectableList.displayName = 'SelectableList';
 
 
-export default ({ onMenuClick }) => (
-    <Menu>
-        <MenuItem containerElement={<Link to="/" />} onTouchTap={onMenuClick}>Status</MenuItem>
-        <MenuItem containerElement={<Link to="snapshot" />} onTouchTap={onMenuClick}>Snapshot</MenuItem>
-        <MenuItem containerElement={<Link to="history"/>} onTouchTap={onMenuClick}>History</MenuItem>
-        <MenuItem onTouchTap={onMenuClick}>Control</MenuItem>
-    </Menu>
-);
+class LeftMenu extends React.Component {
+    static propTypes = {
+        onMenuClick: PropTypes.func.isRequired
+    }
+
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    }
+
+    itemSelected(value) {
+        this.context.router.push(value);
+        this.props.onMenuClick();
+    }
+
+    render() {
+        return (
+            <SelectableList
+                onChange={(event, value) => this.itemSelected(value)}
+                value={this.context.router.location.pathname}>
+                <ListItem value="/" primaryText="Status" />
+                <ListItem value="/snapshot" primaryText="Snapshot" />
+                <ListItem value="/history" primaryText="History" />
+                <ListItem value="/control" primaryText="Control" />
+            </SelectableList>
+        )
+    }
+}
+export default LeftMenu;
