@@ -1,6 +1,6 @@
 import { indigo500, indigo700} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import spacing from 'material-ui/styles/spacing';
+import {spacing, typography} from 'material-ui/styles';
 
 export const containerStyle = {
     display: 'flex',
@@ -55,4 +55,14 @@ export const mainContentStyle = {
 
 export const loginButtonStyle = {
     marginTop: '7px'
+}
+
+export const userHeaderStyle = {
+    fontSize: 24,
+    color: typography.textFullWhite,
+    lineHeight: `${spacing.desktopKeylineIncrement}px`,
+    fontWeight: typography.fontWeightLight,
+    backgroundColor: muiTheme.palette.primary1Color,
+    paddingLeft: spacing.desktopGutter,
+    marginBottom: 8
 }

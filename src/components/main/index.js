@@ -67,7 +67,7 @@ export default class Main extends React.Component {
                             docked={false}
                             open={this.state.drawer.open}
                             onRequestChange={(open) => this.handleDrawer(open)}>
-                        <LeftMenu onMenuClick={() => this.handleDrawer(false)}/>
+                        <LeftMenu {...this.props} onMenuClick={() => this.handleDrawer(false)}/>
                     </Drawer>
                     <About open={this.state.about.open} onClose={() => this.handleAbout(false)} />
                     <div style={mainContentStyle}>
