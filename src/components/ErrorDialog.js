@@ -3,21 +3,18 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
 export default class ErrorDialog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: true
-        };
+    state = {
+        open: true
     }
 
-    handleClose() {
+    close = () => {
         this.setState({
             open: false
         })
     }
 
-    handleRetry() {
-        this.handleClose();
+    retry = () => {
+        this.close();
         this.props.onRetry();
     }
 
@@ -26,12 +23,12 @@ export default class ErrorDialog extends React.Component {
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onTouchTap={() => this.handleClose()} />,
+                onTouchTap={this.close} />,
             <FlatButton
                 label="Retry"
                 primary={true}
                 keyboardFocused={true}
-                onTouchTap={() => this.handleRetry()} />
+                onTouchTap={this.retry} />
         ]
 
         return (
@@ -41,7 +38,7 @@ export default class ErrorDialog extends React.Component {
                     actions={actions}
                     modal={false}
                     open={this.state.open}
-                    onRequestClose={() => this.handleClose()}>
+                    onRequestClose={this.close}>
                         <p>{this.props.message}</p>
                 </Dialog>
             </div>

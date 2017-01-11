@@ -16,7 +16,7 @@ class LeftMenu extends React.Component {
         router: PropTypes.object.isRequired
     }
 
-    itemSelected(value) {
+    itemSelected = (event, value) => {
         this.context.router.push(value);
         this.props.onMenuClick();
     }
@@ -28,7 +28,7 @@ class LeftMenu extends React.Component {
                     {this.props.userInfo && this.props.userInfo.login}
                 </div>
                 <SelectableList
-                    onChange={(event, value) => this.itemSelected(value)}
+                    onChange={this.itemSelected}
                     value={this.context.router.location.pathname}>
                     <ListItem value="/" primaryText="Status" />
                     <ListItem value="/snapshot" primaryText="Snapshot" />

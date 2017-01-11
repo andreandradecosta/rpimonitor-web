@@ -15,7 +15,7 @@ class LoginContainer extends React.Component {
         this.props.setMainTitle('Login');
     }
 
-    handleLogin(username, password) {
+    handleLogin = (username, password) => {
         this.props.login(username, password).then(
             () => {
                 this.context.router.replace(this.props.location.query.redirectTo || '/');
@@ -29,7 +29,7 @@ class LoginContainer extends React.Component {
     render() {
         return <Login
                     {...this.props}
-                    onLoginSubmit={(username, password) => this.handleLogin(username, password)}/>
+                    onLoginSubmit={this.handleLogin}/>
     }
 }
 

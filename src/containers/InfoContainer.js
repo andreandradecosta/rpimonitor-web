@@ -15,7 +15,7 @@ const InfoContainer = (resource, InfoComponent, title) => {
             this.fetchInfo();
         }
 
-        fetchInfo() {
+        fetchInfo = () => {
             this.props.fetchInfo(resource);
         }
 
@@ -25,7 +25,7 @@ const InfoContainer = (resource, InfoComponent, title) => {
                 <InfoPanel
                     isFetching={isFetching}
                     errorMessage={errorMessage}
-                    onRetry={() => this.fetchInfo()}>
+                    onRetry={this.fetchInfo}>
                         <InfoComponent
                             data={result} />
                 </InfoPanel>

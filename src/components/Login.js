@@ -8,22 +8,18 @@ export default class Login extends React.Component {
         errorMessage: PropTypes.string,
         onLoginSubmit: PropTypes.func.isRequired
     }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: ''
-        }
+    state = {
+        username: '',
+        password: ''
     }
 
-    handleInput(field, event) {
+    handleInput = (event) => {
         this.setState({
-            [field]: event.target.value
+            [event.target.name]: event.target.value
         });
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         const { username, password } = this.state;
         this.props.onLoginSubmit(username, password);
@@ -34,16 +30,18 @@ export default class Login extends React.Component {
         return (
             <Paper>
                 <h3>{errorMessage}</h3>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
+                <form onSubmit={this.handleSubmit}>
                     <TextField
                         floatingLabelText="User Name"
                         value={this.state.username}
-                        onChange={(event) => this.handleInput('username', event)} />
+                        name="username"
+                        onChange={this.handleInput} />
                     <TextField
                         floatingLabelText="Password"
                         type="password"
                         value={this.state.password}
-                        onChange={(event) => this.handleInput('password', event)} />
+                        name="password"
+                        onChange={this.handleInput} />
                     <RaisedButton label="Submit" primary={true} type="submit"/>
                 </form>
             </Paper>

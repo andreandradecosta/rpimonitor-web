@@ -18,12 +18,12 @@ describe('<Main />', () => {
     });
 
     it('shows drawer when clicked on navigation button', () => {
-        wrapper.instance().handleDrawer(true);
+        wrapper.instance().openDrawer();
         expect(wrapper.find('Drawer').prop('open')).toBeTruthy();
     });
 
     it('closes drawer when clicked on menu', () => {
-        wrapper.instance().handleDrawer(false);
+        wrapper.instance().closeDrawer();
         expect(wrapper.find('Drawer').prop('open')).toBeFalsy();
     });
 
@@ -32,7 +32,7 @@ describe('<Main />', () => {
     });
 
     it('shows about when clicked on menu', () => {
-        wrapper.instance().handleAbout(true);
+        wrapper.instance().openAbout();
         expect(wrapper.find(About).prop('open')).toBeTruthy();
     });
 });

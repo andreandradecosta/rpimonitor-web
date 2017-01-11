@@ -9,7 +9,7 @@ class MainContainer extends React.Component {
         router: React.PropTypes.object.isRequired
     }
 
-    handleSignOut() {
+    handleSignOut = () => {
         this.props.logout();
         this.context.router.push('/login');
     }
@@ -17,7 +17,7 @@ class MainContainer extends React.Component {
     render() {
         return <Main
                     {...this.props}
-                    onSignOut={() => this.handleSignOut()} />
+                    onSignOut={this.handleSignOut} />
     }
 }
 

@@ -15,37 +15,56 @@ export default class Main extends React.Component {
         onSignOut: PropTypes.func.isRequired
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
+    state = {
+        drawer: {
+            open: false
+        },
+        about: {
+            open: false
+        },
+        title: 'My Raspberry Pi Monitor'
+    }
+
+    closeDrawer = () => {
+        this.setState({
             drawer: {
                 open: false
-            },
+            }
+        })
+    }
+    openDrawer = () => {
+        this.setState({
+            drawer: {
+                open: true
+            }
+        })
+    }
+
+    openAbout = () => {
+        this.setState({
             about: {
-                open: false
-            },
-            title: 'My Raspberry Pi Monitor'
+                open: true
+            }
+        })
+    }
+
+    handleDrawer = (open) => {
+        if (open) {
+            this.openDrawer();
+        } else {
+            this.closeDrawer();
         }
-        this.setMainTitle = this.setMainTitle.bind(this);
     }
 
-    handleDrawer(open) {
-        this.setState({
-            drawer: {
-                open
-            }
-        })
-    }
-
-    handleAbout(open) {
+    closeAbout = () => {
         this.setState({
             about: {
-                open
+                open: false
             }
         })
     }
 
-    setMainTitle(title) {
+    setMainTitle = (title) => {
         this.setState({
             title
         })
@@ -60,16 +79,16 @@ export default class Main extends React.Component {
                             showMenuIconButton={true}
                             title={this.state.title}
                             iconElementRight={<RightMenu {...this.props}
-                                                onAboutClick={() => this.handleAbout(true)}
+                                                onAboutClick={this.openAbout}
                                                 onSignOutClick={this.props.onSignOut}/>}
-                            onLeftIconButtonTouchTap={() => this.handleDrawer(true)}/>
+                            onLeftIconButtonTouchTap={this.openDrawer}/>
                     <Drawer
                             docked={false}
                             open={this.state.drawer.open}
-                            onRequestChange={(open) => this.handleDrawer(open)}>
-                        <LeftMenu {...this.props} onMenuClick={() => this.handleDrawer(false)}/>
+                            onRequestChange={this.handleDrawer}>
+                        <LeftMenu {...this.props} onMenuClick={this.closeDrawer}/>
                     </Drawer>
-                    <About open={this.state.about.open} onClose={() => this.handleAbout(false)} />
+                    <About open={this.state.about.open} onClose={this.closeAbout} />
                     <div style={mainContentStyle}>
                         {this.props.children ? React.cloneElement(this.props.children, { setMainTitle: this.setMainTitle }): <div/>}
                     </div>

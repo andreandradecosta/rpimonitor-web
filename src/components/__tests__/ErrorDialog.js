@@ -12,13 +12,13 @@ describe('<ErrorDialog />', () => {
         expect(wrapper.instance().state.open).toBeTruthy();
     });
 
-    it('should call onRetry on handleRetry', () => {
+    it('should call onRetry on retry', () => {
         const retryMock = jest.fn();
         const wrapper = shallow(<ErrorDialog
             message="Error message"
             onRetry={retryMock}/>);
 
-        wrapper.instance().handleRetry();
+        wrapper.instance().retry();
         expect(retryMock).toBeCalled();
         expect(wrapper.instance().state.open).toBeFalsy();
     });
@@ -29,7 +29,7 @@ describe('<ErrorDialog />', () => {
             message="Error message"
             onRetry={retryMock}/>);
 
-        wrapper.instance().handleClose();
+        wrapper.instance().close();
         expect(retryMock).toHaveBeenCalledTimes(0);
         expect(wrapper.instance().state.open).toBeFalsy();
 

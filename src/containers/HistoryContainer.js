@@ -19,14 +19,14 @@ class HistoryContainer extends React.Component {
         this.fetchData();
     }
 
-    fetchData() {
+    fetchData = () => {
         const { start, end } = this.state;
         if (start && end) {
             this.props.fetchHistory(start, end);
         }
     }
 
-    changeFilter(dateField, dateValue) {
+    changeFilter = (dateField, dateValue) => {
         this.setState({
             [dateField]: dateValue
         })
@@ -42,8 +42,8 @@ class HistoryContainer extends React.Component {
                     result={result}
                     isFetching={isFetching}
                     errorMessage={errorMessage}
-                    onRetry={() => this.fetchData()}
-                    onDateChange={(dateField, dateValue) => this.changeFilter(dateField, dateValue)}/>
+                    onRetry={this.fetchData}
+                    onDateChange={this.changeFilter}/>
 
     }
 }
