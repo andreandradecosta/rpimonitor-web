@@ -1,6 +1,8 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import { StatusContainer } from '../containers/InfoContainer';
+
 
 const About = ({onClose, open = false}) => {
     const closeButton = <FlatButton
@@ -15,18 +17,10 @@ const About = ({onClose, open = false}) => {
             modal={false}
             open={open}
             onRequestClose={onClose}
-            actions={closeButton}>
-                <div>
-                    <h1>Methods</h1>
-                    <h3>/auth</h3>
-                    <p>Login with [login] and [password].</p>
-                    <h3>/api/status</h3>
-                    <p>Base Machine Info: CPU, disk usage, disk partitions, host, users.</p>
-                    <h3>/api/snapshot</h3>
-                    <p>Current metrics values</p>
-                    <h3>/api/history?start=YYYY-MM-DD&end=YYYY-MM-DD</h3>
-                    <p>Metrics history</p>
-                </div>
+            actions={closeButton}
+            autoScrollBodyContent={true}
+            repositionOnUpdate={true}>
+                <StatusContainer/>
         </Dialog>
     )
 }

@@ -10,27 +10,28 @@ import { containerStyle, cardStyle} from '../styles';
 
 
 
-const Host = ({host}) => (
+const Host = ({host = {}}) => (
     <Card style={cardStyle}>
         <CardHeader
             avatar={<ComputerIcon />}
-            title={host.hostname}
-            subtitle={`${host.platform} (${host.kernelVersion})`} />
+            title={host.hostname || ''}
+            subtitle={(host.platform && host.kernelVersion) ? `${host.platform} (${host.kernelVersion})`: ''} />
     </Card>
 );
+Host.displayName = 'Host';
 
-
-const Disk = ({diskUsage}) => (
+const Disk = ({diskUsage = {}}) => (
     <Card style={cardStyle}>
         <CardHeader
             avatar={<StorageIcon />}
             title="Disk"
-            subtitle={`${diskUsage.usedPercent.toLocaleString({style: 'percent'})} %`} />
+            subtitle={diskUsage.usedPercent? `${diskUsage.usedPercent.toLocaleString({style: 'percent'})} %`: ''} />
     </Card>
 );
+Disk.displayName = 'Disk';
 
 
-const CPU = ({cpuInfo}) => (
+const CPU = ({cpuInfo = []}) => (
     <Card style={cardStyle} expanded={true}>
         <CardHeader
             avatar={<CPUIcon />}
@@ -49,9 +50,9 @@ const CPU = ({cpuInfo}) => (
         </List>
     </Card>
 );
+CPU.displayName = 'CPU';
 
-
-const UsersInfo = ({users}) => (
+const UsersInfo = ({users = []}) => (
     <Card style={cardStyle} expanded={true}>
         <CardHeader
             avatar={<UserIcon />}
@@ -71,17 +72,16 @@ const UsersInfo = ({users}) => (
     </Card>
 
 );
+UsersInfo.displayName = 'UsersInfo';
 
 const Status = ({data = {}}) => {
     const {metrics} = data;
     return (
         <div style={containerStyle}>
-            {metrics? [
-                <Host {...metrics} key="host"/>,
-                <Disk {...metrics} key="disk"/>,
-                <CPU {...metrics} key="cpu"/>,
-                <UsersInfo {...metrics} key="users"/>
-            ]: []}
+            <Host {...metrics}/>
+            <Disk {...metrics}/>
+            <CPU {...metrics} />
+            <UsersInfo {...metrics}/>
         </div>
     )
 }

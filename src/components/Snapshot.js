@@ -56,25 +56,28 @@ const Memory = ({virtualMemory}) => (
     </Card>
 );
 
+export default class Snapshot extends React.Component {
+    static propTypes = {
+        data: PropTypes.object,
+        setMainTitle: PropTypes.func.isRequired
+    }
 
+    componentDidMount() {
+        this.props.setMainTitle('Snapshot');
+    }
 
-const Snapshot = ({data = []}) => {
-    const { metrics } = data;
-    return (
-        <div style={containerStyle}>
-            {metrics? [
-                <Uptime {...metrics} key="uptime"/>,
-                <Temperature {...metrics} key="temperature"/>,
-                <CPU {...metrics} key="cpu"/>,
-                <Load {...metrics} key="load"/>,
-                <Memory {...metrics} key="memory"/>,
-            ]: []}
-        </div>
-    );
+    render() {
+        const { metrics } = this.props.data || [];
+        return (
+            <div style={containerStyle}>
+                {metrics? [
+                    <Uptime {...metrics} key="uptime"/>,
+                    <Temperature {...metrics} key="temperature"/>,
+                    <CPU {...metrics} key="cpu"/>,
+                    <Load {...metrics} key="load"/>,
+                    <Memory {...metrics} key="memory"/>,
+                ]: []}
+            </div>
+        );
+    }
 }
-
-Snapshot.propTypes = {
-    data: PropTypes.object,
-}
-
-export default Snapshot;

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Main from '../';
 import LeftMenu from '../LeftMenu';
-import About from '../About';
+import About from '../../About';
 
 describe('<Main />', () => {
     const signOutMock = jest.fn();

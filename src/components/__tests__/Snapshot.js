@@ -5,14 +5,16 @@ import Snapshot from '../Snapshot';
 
 describe('<Snapshot />', () => {
 
+    const setMainTitle = jest.fn();
+
     it('should handle undefined', () => {
-        const wrapper = shallow(<Snapshot />);
+        const wrapper = shallow(<Snapshot setMainTitle={setMainTitle}/>);
         expect(wrapper.find('div').length).toBe(1);
         expect(wrapper.find('div').children().length).toBe(0);
     });
 
     it('should handle empty data', () => {
-        const wrapper = shallow(<Snapshot data={{}} />);
+        const wrapper = shallow(<Snapshot data={{}} setMainTitle={setMainTitle}/>);
         expect(wrapper.find('div').length).toBe(1);
         expect(wrapper.find('div').children().length).toBe(0);
     });
@@ -55,7 +57,7 @@ describe('<Snapshot />', () => {
             "temperature": "-",
           }
       };
-      const wrapper = shallow(<Snapshot data={data} />)
+      const wrapper = shallow(<Snapshot data={data} setMainTitle={setMainTitle}/>)
       expect(wrapper.find('div').length).toBe(1);
       expect(wrapper.find('div').children().length).toBe(5);
     });

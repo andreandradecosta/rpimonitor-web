@@ -6,12 +6,11 @@ import InfoPanel from '../components/InfoPanel';
 import * as actions from '../actions';
 import { getResult, getIsFetching, getErrorMessage } from '../reducers/Info';
 
-const InfoContainer = (resource, InfoComponent, title) => {
+const InfoContainer = (resource, InfoComponent) => {
 
     var BaseContainer = class extends React.Component {
 
         componentDidMount() {
-            this.props.setMainTitle(title);
             this.fetchInfo();
         }
 
@@ -27,6 +26,7 @@ const InfoContainer = (resource, InfoComponent, title) => {
                     errorMessage={errorMessage}
                     onRetry={this.fetchInfo}>
                         <InfoComponent
+                            setMainTitle={this.props.setMainTitle}
                             data={result} />
                 </InfoPanel>
             )
@@ -44,6 +44,6 @@ const InfoContainer = (resource, InfoComponent, title) => {
     return connect(mapStateToProps, actions)(BaseContainer);
 }
 
-export const StatusContainer = InfoContainer('status', Status, 'Status');
+export const StatusContainer = InfoContainer('status', Status);
 
-export const SnapshotContainer = InfoContainer('snapshot', Snapshot, 'Snapshot');
+export const SnapshotContainer = InfoContainer('snapshot', Snapshot);

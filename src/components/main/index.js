@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import About from './About';
+import About from '../About';
 import RightMenu from './RightMenu';
 import LeftMenu from './LeftMenu';
 import { muiTheme, appBarStyle, mainContentStyle } from '../../styles';

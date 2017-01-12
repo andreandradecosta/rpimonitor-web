@@ -30,8 +30,7 @@ class LeftMenu extends React.Component {
                 <SelectableList
                     onChange={this.itemSelected}
                     value={this.context.router.location.pathname}>
-                    <ListItem value="/" primaryText="Status" />
-                    <ListItem value="/snapshot" primaryText="Snapshot" />
+                    <ListItem value="/" primaryText="Snapshot" />
                     <ListItem value="/history" primaryText="History" />
                     <ListItem value="/control" primaryText="Control" />
                 </SelectableList>

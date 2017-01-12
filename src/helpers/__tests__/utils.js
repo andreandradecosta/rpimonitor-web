@@ -3,7 +3,7 @@ import { resumeItems, decodePayload } from '../utils';
 describe('utils', () => {
 
     it('resumeItens', () => {
-        const objectArray =[
+        const objectArray = [
             {'attr': 'v1', 'otherAttr': 123},
             {'attr': 'v1', 'otherAttr': 123},
             {'attr': 'v3', 'otherAttr': 123},
@@ -19,6 +19,7 @@ describe('utils', () => {
             {'value': 'v2', count: 2},
             {'value': 'v4', count: 1}
         ]);
+        expect(resumeItems([], 'x')).toEqual([]);
     });
 
     it('decodePayload', () => {
