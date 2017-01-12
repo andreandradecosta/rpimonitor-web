@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import { containerStyle, cardStyle } from '../styles';
+import { containerStyle, cardStyle, fabStyle } from '../styles';
 import { Card, CardHeader } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 
 const Uptime = ({daysUptime}) => (
     <Card style={cardStyle}>
@@ -69,6 +70,7 @@ export default class Snapshot extends React.Component {
     render() {
         const { metrics } = this.props.data || [];
         return (
+            <div>
             <div style={containerStyle}>
                 {metrics? [
                     <Uptime {...metrics} key="uptime"/>,
@@ -78,6 +80,10 @@ export default class Snapshot extends React.Component {
                     <Memory {...metrics} key="memory"/>,
                 ]: []}
             </div>
+            <FloatingActionButton onClick={this.props.onRetry} style={fabStyle}>
+                <NavigationRefresh/>
+            </FloatingActionButton>
+        </div>
         );
     }
 }

@@ -6,7 +6,7 @@ const InfoPanel = ({ isFetching, errorMessage, onRetry, children }) => (
     <div>
         {isFetching? <LinearProgress mode="indeterminate"/>: <div/>}
         {errorMessage? <ErrorDialog message={errorMessage} onRetry={onRetry}/>: <div/>}
-        {children}
+        { children }
     </div>
 );
 

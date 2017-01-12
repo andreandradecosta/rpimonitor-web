@@ -27,7 +27,8 @@ const InfoContainer = (resource, InfoComponent) => {
                     onRetry={this.fetchInfo}>
                         <InfoComponent
                             setMainTitle={this.props.setMainTitle}
-                            data={result} />
+                            data={result}
+                            onRetry={this.fetchInfo}/>
                 </InfoPanel>
             )
         }
