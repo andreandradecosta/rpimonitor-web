@@ -9,14 +9,14 @@ describe('<Snapshot />', () => {
 
     it('should handle undefined', () => {
         const wrapper = shallow(<Snapshot setMainTitle={setMainTitle}/>);
-        expect(wrapper.find('div').length).toBe(2);
-        expect(wrapper.find('div').children().length).toBe(2);
+        expect(wrapper.find('div').length).toBe(1);
+        expect(wrapper.find('div').children().length).toBe(1);
     });
 
     it('should handle empty data', () => {
         const wrapper = shallow(<Snapshot data={{}} setMainTitle={setMainTitle}/>);
-        expect(wrapper.find('div').length).toBe(2);
-        expect(wrapper.find('div').children().length).toBe(2);
+        expect(wrapper.find('div').length).toBe(1);
+        expect(wrapper.find('div').children().length).toBe(1);
     });
 
     it('should render with missing data', () => {
@@ -58,8 +58,8 @@ describe('<Snapshot />', () => {
           }
       };
       const wrapper = shallow(<Snapshot data={data} setMainTitle={setMainTitle}/>)
-      expect(wrapper.find('div').length).toBe(2);
-      expect(wrapper.find('div').children().length).toBe(7);
+      expect(wrapper.find('div').length).toBe(1);
+      expect(wrapper.find('div').children().length).toBe(6);
     });
 
 });

@@ -74,4 +74,5 @@ export const fabStyle = {
     bottom: 20,
     left: 'auto',
     position: 'fixed',
+    zIndex: 2
 };

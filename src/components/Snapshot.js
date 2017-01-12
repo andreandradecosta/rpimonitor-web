@@ -70,7 +70,6 @@ export default class Snapshot extends React.Component {
     render() {
         const { metrics } = this.props.data || [];
         return (
-            <div>
             <div style={containerStyle}>
                 {metrics? [
                     <Uptime {...metrics} key="uptime"/>,
@@ -79,11 +78,10 @@ export default class Snapshot extends React.Component {
                     <Load {...metrics} key="load"/>,
                     <Memory {...metrics} key="memory"/>,
                 ]: []}
+                <FloatingActionButton onClick={this.props.onRetry} style={fabStyle}>
+                    <NavigationRefresh/>
+                </FloatingActionButton>
             </div>
-            <FloatingActionButton onClick={this.props.onRetry} style={fabStyle}>
-                <NavigationRefresh/>
-            </FloatingActionButton>
-        </div>
         );
     }
 }
