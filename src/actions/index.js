@@ -2,6 +2,12 @@ import * as api from '../helpers/api';
 import * as storage from '../helpers/storage'
 import { getToken } from '../reducers/Auth';
 
+
+const errorAction = (type, error) => ({
+    type,
+    errorMessage: error.response? error.response.data: error.message
+});
+
 export const login = (username, password) => (dispatch) => {
     dispatch({
         type: 'LOGIN_REQUEST'
@@ -15,10 +21,7 @@ export const login = (username, password) => (dispatch) => {
             });
         },
         error => {
-            dispatch({
-                    type: 'LOGIN_FAILURE',
-                    errorMessage: error.message
-            });
+            dispatch(errorAction('LOGIN_FAILURE', error));
             throw error;
         }
     )
@@ -45,10 +48,7 @@ export const fetchInfo = (resource) => (dispatch, getState) => {
             });
         },
         error => {
-            dispatch({
-                type: 'FETCH_INFO_FAILURE',
-                message: `Request error: ${error.message}`
-            })
+            dispatch(errorAction('FETCH_INFO_FAILURE', error));
         }
     );
 }
@@ -68,10 +68,7 @@ export const fetchHistory = (start, end) => (dispatch, getState) => {
             });
         },
         error => {
-            dispatch({
-                type: 'FETCH_HISTORY_FAILURE',
-                message: `Request error: ${error.message}.`
-            })
+            dispatch(errorAction('FETCH_HISTORY_FAILURE', error));
         }
     );
 }

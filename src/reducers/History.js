@@ -36,7 +36,7 @@ const isFetching = (state = false, action) => {
 const errorMessage = (state = null, action) => {
     switch (action.type) {
         case 'FETCH_HISTORY_FAILURE':
-            return action.message;
+            return action.errorMessage;
         case 'FETCH_HISTORY_REQUEST':
         case 'FETCH_HISTORY_SUCCESS':
             return null;

@@ -28,7 +28,7 @@ const isFetching = (state = false, action) => {
 const errorMessage = (state = null, action) => {
     switch (action.type) {
         case 'FETCH_INFO_FAILURE':
-            return action.message;
+            return action.errorMessage;
         case 'FETCH_INFO_REQUEST':
         case 'FETCH_INFO_SUCCESS':
             return null;
