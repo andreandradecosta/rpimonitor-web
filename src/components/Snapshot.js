@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react';
 import { containerStyle, cardStyle, fabStyle } from '../styles';
-import { Card, CardHeader } from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 
-const Uptime = ({daysUptime}) => (
+const Uptime = ({daysUptime, timestamp}) => (
     <Card style={cardStyle}>
         <CardHeader
                 title="Uptime"
                 subtitle={`${daysUptime} days`} />
+            <CardText>
+                <div style={{textAlign:'right'}}>{new Date(timestamp * 1000).toLocaleString()}</div>
+            </CardText>
     </Card>
 );
 
@@ -68,11 +71,11 @@ export default class Snapshot extends React.Component {
     }
 
     render() {
-        const { metrics } = this.props.data || [];
+        const { metrics, timestamp } = this.props.data || [];
         return (
             <div style={containerStyle}>
                 {metrics? [
-                    <Uptime {...metrics} key="uptime"/>,
+                    <Uptime {...metrics} timestamp={timestamp} key="uptime"/>,
                     <Temperature {...metrics} key="temperature"/>,
                     <CPU {...metrics} key="cpu"/>,
                     <Load {...metrics} key="load"/>,
