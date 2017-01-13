@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LinearProgress from 'material-ui/LinearProgress';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 import InfoPanel from '../InfoPanel';
 
 describe('<InfoPanel />', () => {
@@ -14,7 +14,7 @@ describe('<InfoPanel />', () => {
                                         {children}
                                 </InfoPanel>);
         expect(wrapper.contains(children)).toBeTruthy();
-        expect(wrapper.contains(<LinearProgress />)).toBeTruthy();
+        expect(wrapper.find('Loading').shallow().find(RefreshIndicator).props().status).toBe('loading');
         expect(wrapper.find('ErrorDialog').length).toBe(0);
     });
 
@@ -26,7 +26,7 @@ describe('<InfoPanel />', () => {
                                         {children}
                                 </InfoPanel>);
         expect(wrapper.contains(children)).toBeTruthy();
-        expect(wrapper.contains(<LinearProgress />)).toBeFalsy();
+        expect(wrapper.find('Loading').shallow().find(RefreshIndicator).props().status).toBe('hide');
         expect(wrapper.find('ErrorDialog').length).toBe(1);
     });
 
@@ -37,6 +37,6 @@ describe('<InfoPanel />', () => {
                                         {children}
                                 </InfoPanel>);
         expect(wrapper.contains(children)).toBeTruthy();
-        expect(wrapper.contains(<LinearProgress />)).toBeFalsy();
+        expect(wrapper.find('Loading').shallow().find(RefreshIndicator).props().status).toBe('hide');
     });
 });

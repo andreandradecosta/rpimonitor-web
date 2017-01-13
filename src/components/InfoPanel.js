@@ -1,10 +1,24 @@
 import React, { PropTypes } from 'react';
-import LinearProgress from 'material-ui/LinearProgress';
 import ErrorDialog from './ErrorDialog';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import {loadingContainerStyle, refreshIndicadorStyle} from '../styles';
+
+
+const Loading = ({ isFetching }) => (
+    <div style={loadingContainerStyle}>
+        <div style={refreshIndicadorStyle}>
+            <RefreshIndicator
+                left={-20}
+                top={10}
+                status={isFetching? 'loading': 'hide'}/>
+        </div>
+    </div>
+)
+Loading.displayName = 'Loading';
 
 const InfoPanel = ({ isFetching, errorMessage, onRetry, children }) => (
     <div>
-        {isFetching? <LinearProgress mode="indeterminate"/>: <div/>}
+        <Loading isFetching={isFetching} />
         {errorMessage? <ErrorDialog message={errorMessage} onRetry={onRetry}/>: <div/>}
         { children }
     </div>

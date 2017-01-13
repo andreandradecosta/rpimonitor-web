@@ -76,3 +76,15 @@ export const fabStyle = {
     position: 'fixed',
     zIndex: 2
 };
+
+export const loadingContainerStyle = {
+    display: "flex",
+    flex: "1",
+    alignItems: "center",
+    justifyContent: "center"
+};
+
+export const refreshIndicadorStyle = { 
+    position: "relative",
+    alignSelf: "center"
+};
