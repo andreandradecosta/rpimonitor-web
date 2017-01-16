@@ -5,7 +5,7 @@ import { getToken } from '../reducers/Auth';
 
 const errorAction = (type, error) => ({
     type,
-    errorMessage: error.response? error.response.data: error.message
+    errorMessage: error.message
 });
 
 export const login = (username, password) => (dispatch) => {

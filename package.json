@@ -9,10 +9,10 @@
     "foreman": "^2.0.0",
     "json-server": "^0.8.22",
     "react-addons-test-utils": "^15.4.1",
-    "react-scripts": "0.8.4"
+    "react-scripts": "0.8.4",
+    "redux-mock-store": "^1.2.1"
   },
   "dependencies": {
-    "axios": "^0.14.0",
     "material-ui": "^0.16.6",
     "moment": "^2.15.1",
     "react": "^15.4.1",
