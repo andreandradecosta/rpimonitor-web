@@ -84,7 +84,32 @@ export const loadingContainerStyle = {
     justifyContent: "center"
 };
 
-export const refreshIndicadorStyle = { 
+export const refreshIndicadorStyle = {
     position: "relative",
     alignSelf: "center"
+};
+
+export const loginContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '50px'
+};
+
+export const loginBoxStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    flexBasis: '20%',
+};
+
+export const loginFormStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '20px'
+};
+
+export const loginItensStyle = {
+    margin: '20px'
 };
