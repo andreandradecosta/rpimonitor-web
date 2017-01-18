@@ -30,9 +30,8 @@ export const historyStyles = {
         alignContent: 'flex-start',
 
     },
-    datePicker: {
-        marginLeft: '20px',
-        marginRight: '20px'
+    field: {
+        margin: '20px',
     }
 }
 

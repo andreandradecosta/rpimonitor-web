@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import History from '../components/History';
-import { getFilter, getResult, getIsFetching, getErrorMessage } from '../reducers/History';
+import History from '../components/history';
+import * as reducer from '../reducers/History';
 import * as actions from '../actions';
 
 class HistoryContainer extends React.Component {
@@ -35,13 +35,14 @@ class HistoryContainer extends React.Component {
 
     render() {
         const { start, end } = this.state;
-        const { result, isFetching, errorMessage } = this.props;
+        const { result, isFetching, errorMessage, variables } = this.props;
         return <History
                     start={start}
                     end={end}
                     result={result}
                     isFetching={isFetching}
                     errorMessage={errorMessage}
+                    variables={variables}
                     onRetry={this.fetchData}
                     onDateChange={this.changeFilter}/>
 
@@ -49,13 +50,14 @@ class HistoryContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const filter = getFilter(state);
+    const filter = reducer.getFilter(state);
     return {
         start: filter.start,
         end: filter.end,
-        isFetching: getIsFetching(state),
-        errorMessage: getErrorMessage(state),
-        result: getResult(state)
+        isFetching: reducer.getIsFetching(state),
+        errorMessage: reducer.getErrorMessage(state),
+        result: reducer.getResult(state),
+        variables: reducer.getVariables(state)
     }
 };
 
