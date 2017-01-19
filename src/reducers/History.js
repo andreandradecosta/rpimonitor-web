@@ -63,16 +63,24 @@ export const getIsFetching = (state, start, end) => state.history.isFetching;
 
 export const getErrorMessage = (state, start, end) => state.history.errorMessage;
 
-export const getVariables = (state) => {
-    return getResult(state).reduce((variablesAcc, record) => {
-        const metrics = record.metrics;
-        const recordVars = Object.keys(metrics).reduce((mKeyAcc, mKeyCurr) => {
-            if (typeof metrics[(mKeyCurr)] !== 'object') {
-                return [...mKeyAcc, mKeyCurr]
-            }
-            const keys = Object.keys(metrics[(mKeyCurr)]).map(k => `${mKeyCurr}.${k}`)
-            return [...mKeyAcc, ...keys]
-        }, [])
-        return [...variablesAcc.filter(i => !recordVars.includes(i)), ...recordVars];
-    }, []).sort()
-}
+export const getVariables = (state) =>
+        getResult(state).reduce((variablesAcc, record) => {
+            const {metrics} = record;
+            const recordVars = Object.keys(metrics).reduce((mKeyAcc, mKeyCurr) => {
+                if (typeof metrics[(mKeyCurr)] !== 'object') {
+                    return [...mKeyAcc, mKeyCurr]
+                }
+                const keys = Object.keys(metrics[(mKeyCurr)]).map(k => `${mKeyCurr}.${k}`)
+                return [...mKeyAcc, ...keys]
+            }, [])
+            return [...variablesAcc.filter(i => !recordVars.includes(i)), ...recordVars];
+        }, []).sort()
+
+
+export const getTimeSeries = (state, name, subName) =>
+        getResult(state).map(record => {
+                const {timestamp} = record;
+                const metrics = record.metrics[name];
+                const val = subName? metrics[subName]: metrics
+                return [timestamp * 1000, val];
+        })

@@ -35,14 +35,9 @@ class HistoryContainer extends React.Component {
 
     render() {
         const { start, end } = this.state;
-        const { result, isFetching, errorMessage, variables } = this.props;
         return <History
                     start={start}
                     end={end}
-                    result={result}
-                    isFetching={isFetching}
-                    errorMessage={errorMessage}
-                    variables={variables}
                     onRetry={this.fetchData}
                     onDateChange={this.changeFilter}/>
 
@@ -50,14 +45,10 @@ class HistoryContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const filter = reducer.getFilter(state);
+    const {start, end} = reducer.getFilter(state);
     return {
-        start: filter.start,
-        end: filter.end,
-        isFetching: reducer.getIsFetching(state),
-        errorMessage: reducer.getErrorMessage(state),
-        result: reducer.getResult(state),
-        variables: reducer.getVariables(state)
+        start,
+        end
     }
 };
 

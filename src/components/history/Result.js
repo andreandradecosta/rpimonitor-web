@@ -1,16 +1,20 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import * as reducer from '../../reducers/History';;
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import InfoPanel from '../InfoPanel';
 import { historyStyles } from '../../styles';
+import Chart from './Chart';
+
 
 const SelectVar = ({variables, selectedVar, onChange}) => (
     <SelectField
         floatingLabelText="Variable"
         autoWidth={true}
         value={selectedVar}
-        onChange={onChange}
         disabled={variables.length === 0}
+        onChange={onChange}
         style={historyStyles.field}>
         {
             variables.map((v, i) => <MenuItem key={i} value={v} primaryText={v}/>)
@@ -19,13 +23,9 @@ const SelectVar = ({variables, selectedVar, onChange}) => (
 )
 SelectVar.displayName = 'SelectVar';
 
-class Result extends React.Component {
+export class Result extends React.Component {
     static propTypes = {
-        isFetching: PropTypes.bool.isRequired,
-        errorMessage: PropTypes.string,
         onRetry: PropTypes.func.isRequired,
-        result: PropTypes.array.isRequired,
-        variables: PropTypes.array.isRequired
     }
     constructor(props) {
         super(props);
@@ -40,14 +40,14 @@ class Result extends React.Component {
         });
     }
 
-    getKeys = () => {
+    getVarNames = () => {
         if (typeof this.state.selectedVar !== 'undefined') {
             return this.state.selectedVar.split('.');
         }
         return [undefined, undefined];
     }
 
-    componentWillReceiveProps( { result, variables } ) {
+    componentWillReceiveProps( { variables } ) {
        if (typeof this.state.selectedVar === 'undefined') {
             this.setState({
                 selectedVar: variables[0]
@@ -56,9 +56,8 @@ class Result extends React.Component {
     }
 
     render() {
-        const [key, subKey] = this.getKeys();
-        const { isFetching, errorMessage, onRetry, result, variables } = this.props;
-        const varTitle = this.state.selectedVar || 'Variable';
+        const { isFetching, errorMessage, onRetry, variables } = this.props;
+        const [name, subName] = this.getVarNames();
         return (
             <InfoPanel
                 isFetching={isFetching}
@@ -69,31 +68,19 @@ class Result extends React.Component {
                         variables={variables}
                         selectedVar={this.state.selectedVar}
                         onChange={this.changeVar} />
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date/Time</th>
-                                <th>{varTitle}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                result.map((data, i) => {
-                                    const metrics = data.metrics[key];
-                                    const val = subKey? metrics[subKey]: metrics;
-                                    return (
-                                        <tr key={i}>
-                                            <td>{data.localTime}</td>
-                                            <td>{val}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
+                    <Chart variable={this.state.selectedVar} name={name} subName={subName} />
             </InfoPanel>
         )
     }
 }
 
-export default Result;
+const mapStateToProps = (state) => (
+    {
+        isFetching: reducer.getIsFetching(state),
+        errorMessage: reducer.getErrorMessage(state),
+        variables: reducer.getVariables(state)
+    }
+);
+
+
+export default connect(mapStateToProps)(Result);

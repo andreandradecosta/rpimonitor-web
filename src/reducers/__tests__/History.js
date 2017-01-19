@@ -35,13 +35,14 @@ describe('History Reducers', () => {
                 },
                 "temperature": "-",
                 "virtualMemory": {
+                    "active": 5937995777,
                     "total": 16430116864,
                 }
             }
         },
         {
             "localTime": "2016-10-11T14:44:03.844-03:00",
-            "timestamp": 1476207843,
+            "timestamp": 1476207783,
             "metrics": {
                 "swapMemory": {
                     "total": 16775114752,
@@ -50,19 +51,19 @@ describe('History Reducers', () => {
                 },
                 "temperature": "-",
                 "virtualMemory": {
-                    "active": 5896622080,
+                    "active": 5937995778,
                 }
             }
         }
     ];
 
+    const state = {
+        history: {
+            result
+        }
+    }
 
     it('selects variables from result', () => {
-        const state = {
-            history: {
-                result
-            }
-        };
         expect(history.getVariables(state)).toEqual([
             'daysUptime',
             'load.load1',
@@ -80,12 +81,48 @@ describe('History Reducers', () => {
     });
 
     it('returns empty array without result', () => {
-        const state = {
+        const emptyState = {
             history: {
                 result: []
             }
         };
-        expect(history.getVariables(state)).toEqual([]);
+        expect(history.getVariables(emptyState)).toEqual([]);
+    });
+
+    it('returns a timeseries for one key', () => {
+        expect(history.getTimeSeries(state, 'daysUptime', undefined)).toEqual([
+            [
+                1476207903000,
+                4
+            ],
+            [
+                1476207843000,
+                undefined
+
+            ],
+            [
+                1476207783000,
+                undefined
+            ]
+        ])
+    });
+
+    it('returns a timeseries for two keys', () => {
+        expect(history.getTimeSeries(state, 'virtualMemory', 'active')).toEqual([
+            [
+                1476207903000,
+                5937995776
+            ],
+            [
+                1476207843000,
+                5937995777
+
+            ],
+            [
+                1476207783000,
+                5937995778
+            ]
+        ])
     });
 
 });

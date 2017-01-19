@@ -2621,6 +2621,10 @@ he@1.1.x:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.0.tgz#29319d49beec13a9b1f3c4f9b2a6dde4859bb2a7"
 
+highcharts@^5.0.0, highcharts@^5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-5.0.7.tgz#63ebeeee05acd56e3b2554b5b31a1224e1e05bf6"
+
 history@^3.0.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/history/-/history-3.2.1.tgz#71c7497f4e6090363d19a6713bb52a1bfcdd99aa"
@@ -4778,6 +4782,12 @@ react-event-listener@^0.4.0:
   dependencies:
     react-addons-shallow-compare "^0.14.0 || ^15.0.0"
     warning "^3.0.0"
+
+react-highcharts@^11.5.0:
+  version "11.5.0"
+  resolved "https://registry.yarnpkg.com/react-highcharts/-/react-highcharts-11.5.0.tgz#2812cdc56ef1057e59cbc9c4dbed79b72d8505ae"
+  dependencies:
+    highcharts "^5.0.0"
 
 react-redux@^4.4.6:
   version "4.4.6"
